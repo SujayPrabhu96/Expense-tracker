@@ -1,22 +1,23 @@
-import { REGISTER_REQUEST, REGISTER_SUCCESS, REGISTER_FAILURE } from '../constants/actionTypes';
+import { registerConstants } from '../constants/actionTypes';
 
 export const registerRequest = user => {
+    
     return{
-        type: REGISTER_REQUEST,
+        type: registerConstants.REGISTER_REQUEST,
         payload: user
     }
 };
 
 export const registerSuccess = user => {
     return{
-        type: REGISTER_SUCCESS,
+        type: registerConstants.REGISTER_SUCCESS,
         payload: user
     }
 };
 
 export const registerFailure = error => {
     return{
-        type: REGISTER_FAILURE,
+        type: registerConstants.REGISTER_FAILURE,
         payload: error
     }
 };
