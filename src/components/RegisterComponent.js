@@ -2,8 +2,12 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { registerSuccess, registerFailure, registerRequest } from '../actions/registerActions';
 import { register } from '../helpers/Registration';
+import { Link } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
 function RegisterComponent(props){
+
+    let history = useHistory();
     
     const [userData, setUserData] = useState(props.user);
 
@@ -17,12 +21,18 @@ function RegisterComponent(props){
     const handleClick = async (event) => {
         event.preventDefault();
         props.registerRequest(userData);
-        const response = await register(userData);
-        if(response.isSuccess){
-            props.registerSuccess(response.user);
-        } else {
-            props.registerFailure(response.message);
+        try{
+            const response = await register(userData);
+            if(response.isSuccess){
+                props.registerSuccess(response.user);
+                history.push("/login");
+            } else {
+                props.registerFailure(response.message);
+            }
+        } catch(error){
+            props.registerFailure(error);
         }
+        
     };
          
     return(
@@ -43,7 +53,12 @@ function RegisterComponent(props){
                         <input  type="text" className="form-control" name="password" id="password" value={userData.password} onChange={handleChange} />
                     </div>
                 </div>
-                <button className="btn btn-primary" onClick={handleClick}>Submit</button>
+                <div>
+                    <p>Already have an account? 
+                        <Link to="/login">Login here</Link>
+                    </p>
+                </div>
+                <button className="btn btn-primary" onClick={handleClick}>Register</button>
             </form>
         </div>
     );
