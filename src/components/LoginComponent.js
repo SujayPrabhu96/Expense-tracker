@@ -17,7 +17,7 @@ function LoginComponent() {
                 <div className="form-group row">
                     <label htmlFor="password" className="col-2"><strong>Password: </strong></label>
                     <div className="col-4">
-                        <input type="text" className="form-control" name="password" id="password" />
+                        <input type="password" className="form-control" name="password" id="password" />
                     </div>
                 </div>
                 <div className="mb-3">
