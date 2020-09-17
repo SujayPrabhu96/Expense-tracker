@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
-import './App.css';
-import { clear } from './actions/alertActions';
-import Navbar from './components/NavbarComponent';
-import Login from './components/LoginComponent';
-import Register from './components/RegisterComponent';
-import Home from './components/HomeComponent';
+import '../App.css';
+import { clear } from '../actions/alertActions';
+import Navbar from './NavbarComponent';
+import Login from './LoginComponent';
+import Register from './RegisterComponent';
+import Home from './HomeComponent';
 
 function App(props) {
 
@@ -38,7 +38,7 @@ function App(props) {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
+  
   return {
     alert: state.actionReducer
   }
