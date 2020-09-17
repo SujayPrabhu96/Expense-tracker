@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { loginRequest, loginSuccess, loginFailure } from '../actions/loginActions';
 import { login } from '../helpers/Login';
+
 import { connect } from 'react-redux';
 
 function LoginComponent(props) {
@@ -47,15 +48,7 @@ function LoginComponent(props) {
                 <div className="form-group row">
                     <label htmlFor="password" className="col-2"><strong>Password: </strong></label>
                     <div className="col-4">
-<<<<<<< HEAD
-<<<<<<< HEAD
-                        <input type="password" className="form-control" name="password" id="password" />
-=======
-                        <input type="password" className="form-control" name="password" id="password" value={userData.password}/>
->>>>>>> added mapState and mapDispatch to props in login
-=======
                         <input type="password" className="form-control" name="password" id="password" value={userData.password} onChange={handleChange}/>
->>>>>>> Created Login Functionality
                     </div>
                 </div>
                 <div className="mb-3">
