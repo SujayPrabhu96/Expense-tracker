@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { loginRequest, loginSuccess, loginFailure } from '../actions/loginActions';
 import { login } from '../helpers/Login';
-
 import { connect } from 'react-redux';
 
 function LoginComponent(props) {
