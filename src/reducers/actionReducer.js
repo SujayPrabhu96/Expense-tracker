@@ -1,6 +1,11 @@
 import { alertConstants } from '../constants/actionTypes';
 
-const actionReducer = (state = {}, action) => {
+const initialState = {
+    type: '',
+    message: ''
+};
+
+const actionReducer = (state = initialState, action) => {
 
     switch(action.type){
         case alertConstants.ALERT_SUCCESS:
@@ -14,7 +19,7 @@ const actionReducer = (state = {}, action) => {
                 message: action.payload
             }
         case alertConstants.ALERT_CLEAR: 
-            return{}
+            return initialState
         default:
             return state;
     }

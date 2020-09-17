@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { registerSuccess, registerFailure, registerRequest } from '../actions/registerActions';
+import { success, error } from '../actions/alertActions';
 import { register } from '../helpers/Registration';
 import { Link } from 'react-router-dom';
 import { useHistory } from "react-router-dom";
@@ -26,11 +27,14 @@ function RegisterComponent(props){
             if(response.isSuccess){
                 props.registerSuccess(response.user);
                 history.push("/login");
+                props.success("Registration Successful");
             } else {
                 props.registerFailure(response.message);
+                props.error(response.message);
             }
         } catch(error){
             props.registerFailure(error);
+            props.error(error);
         }
         
     };
@@ -75,7 +79,9 @@ const mapDispatchToProps = dispatch => {
     return{
         registerRequest: (user) => dispatch(registerRequest(user)),
         registerSuccess: (user) => dispatch(registerSuccess(user)),
-        registerFailure: (error) => dispatch(registerFailure(error))
+        registerFailure: (error) => dispatch(registerFailure(error)),
+        success: (message) => dispatch(success(message)),
+        error: (message) => dispatch(error(message))
     }
 };
 
