@@ -13,3 +13,10 @@ export const registerConstants = {
     CHANGE_REGISTER_INPUT: 'CHANGE_REGISTER_INPUT'
 
 };
+
+export const loginConstants = {
+
+    LOGIN_REQUEST: 'LOGIN_REQUEST',
+    LOGIN_SUCCESS: 'LOGIN_SUCCESS',
+    LOGIN_FAILURE: 'LOGIN_FAILURE'
+};
