@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import '../App.css';
-import { clear } from '../actions/alertActions';
 import Navbar from './NavbarComponent';
 import Login from './LoginComponent';
 import Register from './RegisterComponent';
@@ -11,9 +10,9 @@ import Home from './HomeComponent';
 function App(props) {
 
   const [alert, setAlert] = useState(props.alert);
-
+ 
   useEffect(() =>{ 
-      setAlert(props.alert)
+      setAlert(props.alert);
    }, [props]);
 
   return (
@@ -44,10 +43,4 @@ const mapStateToProps = state => {
   }
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    clear: () => dispatch(clear())
-  }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, null)(App);

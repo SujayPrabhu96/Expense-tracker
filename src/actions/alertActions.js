@@ -13,9 +13,3 @@ export const error = message => {
         payload: message
     }
 };
-
-export const clear = message => {
-    return{
-        type: alertConstants.ALERT_CLEAR
-    }
-};

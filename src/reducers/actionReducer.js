@@ -18,8 +18,6 @@ const actionReducer = (state = initialState, action) => {
                 type: 'alert-danger',
                 message: action.payload
             }
-        case alertConstants.ALERT_CLEAR: 
-            return initialState
         default:
             return state;
     }
