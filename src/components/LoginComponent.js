@@ -6,10 +6,10 @@ import { login } from '../helpers/Login';
 import { connect } from 'react-redux';
 
 function LoginComponent(props) {
-
+    
     let history = useHistory();
     const [userData, setUserData] = useState(props.user);
-
+    
     const handleChange = (event) => {
         setUserData({
             ...userData,
@@ -25,7 +25,7 @@ function LoginComponent(props) {
             if (response.isSuccess) {
                 props.loginSuccess(userData);
                 history.push("/home");
-                props.success("Login Successful");
+                props.success("Login Successful");        
             } else {
                 props.loginFailure(response.message);
                 props.error(response.message);
