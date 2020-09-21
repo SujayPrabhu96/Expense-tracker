@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { loginRequest, loginSuccess, loginFailure } from '../actions/loginActions';
+import { success, error } from '../actions/alertActions';
 import { login } from '../helpers/Login';
 import { connect } from 'react-redux';
 
@@ -16,19 +17,22 @@ function LoginComponent(props) {
         })
     };
 
-    const handleClick =  async(event) => {
+    const handleClick = async (event) => {
         event.preventDefault();
         props.loginRequest(userData);
-        try{
+        try {
             const response = await login(userData);
-            if(response.isSuccess){
+            if (response.isSuccess) {
                 props.loginSuccess(userData);
                 history.push("/home");
+                props.success("Login Successful");
             } else {
                 props.loginFailure(response.message);
+                props.error(response.message);
             }
-        } catch(error){
+        } catch (error) {
             props.loginFailure(error);
+            props.error(error);
         }
     };
 
@@ -41,13 +45,13 @@ function LoginComponent(props) {
                 <div className="form-group row">
                     <label htmlFor="email" className="col-2"><strong>Email: </strong></label>
                     <div className="col-4">
-                        <input type="text" className="form-control" name="email" id="email" value={userData.email} onChange={handleChange}/>
+                        <input type="text" className="form-control" name="email" id="email" value={userData.email} onChange={handleChange} />
                     </div>
                 </div>
                 <div className="form-group row">
                     <label htmlFor="password" className="col-2"><strong>Password: </strong></label>
                     <div className="col-4">
-                        <input type="password" className="form-control" name="password" id="password" value={userData.password} onChange={handleChange}/>
+                        <input type="password" className="form-control" name="password" id="password" value={userData.password} onChange={handleChange} />
                     </div>
                 </div>
                 <div className="mb-3">
@@ -69,7 +73,9 @@ const mapDispatchToProps = dispatch => {
     return{
         loginRequest: (user) => dispatch(loginRequest(user)),
         loginSuccess: (user) => dispatch(loginSuccess(user)),
-        loginFailure: (error) => dispatch(loginFailure(error))
+        loginFailure: (error) => dispatch(loginFailure(error)),
+        success: (message) => dispatch(success(message)),
+        error: (message) => dispatch(error(message))
     }
 };
 
