@@ -52,7 +52,7 @@ function RegisterComponent(props) {
 }
 
 const mapStateToProps = state => {
-    return {
+    return{
         user: state.registerReducer
     }
 };

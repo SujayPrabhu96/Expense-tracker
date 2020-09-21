@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-function NavbarComponent() {
-
+function NavbarComponent(props) {
+    
     return (
         <div>
             <nav className="navbar navbar-expand-md navbar-light bg-light">
@@ -21,6 +22,7 @@ function NavbarComponent() {
                             <Link to="/">Home</Link>
                         </div>
                     </div>
+                    {!props.user.isLoggedIn && 
                     <div className="navbar-nav ml-auto">
                         <div className="nav-item nav-link">
                             <Link to="/register">Register</Link>
@@ -29,6 +31,15 @@ function NavbarComponent() {
                             <Link to="/login">Login</Link>
                         </div>
                     </div>
+                    }
+                    {
+                        props.user.isLoggedIn && 
+                        <div className="navbar-nav ml-auto">
+                            <div className="nav-item nav-link">
+                                <Link to="/login">Logout</Link>
+                            </div>
+                        </div>
+                    }
                 </div>
             </nav>
 
@@ -36,4 +47,10 @@ function NavbarComponent() {
     );
 }
 
-export default NavbarComponent;
+const mapStateToProps =  state => {
+    return{
+        user: state.loginReducer
+    }
+};
+
+export default connect(mapStateToProps, null)(NavbarComponent);
