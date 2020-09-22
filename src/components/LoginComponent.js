@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 function LoginComponent(props) {
 
     let history = useHistory();
-    const [userData, setUserData] = useState(props.user);
+    const [userData, setUserData] = useState(props.user || { email: '', password: '' });
 
     const handleChange = (event) => {
         setUserData({
@@ -23,7 +23,7 @@ function LoginComponent(props) {
         try {
             const response = await login(userData);
             if (response.isSuccess) {
-                props.loginSuccess(userData);
+                props.loginSuccess(response.token);
                 history.push("/home");
                 props.success("Login Successful");        
             } else {
@@ -65,7 +65,7 @@ function LoginComponent(props) {
 
 const mapStateToProps = state => {
     return {
-        user: state.loginReducer.user
+        user: state.loginReducer
     }
 };
 
