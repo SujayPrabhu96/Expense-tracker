@@ -27,6 +27,12 @@ const loginReducer = (state = initialState, action) => {
                 ...state,
                 isLoggedIn: false
             }
+        case loginConstants.LOGOUT:
+            return{
+                email: '',
+                password: '',
+                isLoggedIn: false
+            }
         default:
             return state
     }
