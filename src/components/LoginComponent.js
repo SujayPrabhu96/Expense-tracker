@@ -6,10 +6,10 @@ import { login } from '../helpers/Login';
 import { connect } from 'react-redux';
 
 function LoginComponent(props) {
-    
+
     let history = useHistory();
     const [userData, setUserData] = useState(props.user);
-    
+
     const handleChange = (event) => {
         setUserData({
             ...userData,

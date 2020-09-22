@@ -6,6 +6,7 @@ import Navbar from './NavbarComponent';
 import Login from './LoginComponent';
 import Register from './RegisterComponent';
 import Home from './HomeComponent';
+import Logout from './LogoutComponent';
 
 function App(props) {
 
@@ -29,6 +30,7 @@ function App(props) {
           <Route exact path="/" component={Home}></Route>
           <Route path="/login" component={Login}></Route>
           <Route path="/register" component={Register}></Route>
+          <Route path="/logout" component={Logout}></Route>
           <Redirect from="*" to="/" />
         </Switch>
       </Router>

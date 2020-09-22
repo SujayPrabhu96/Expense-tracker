@@ -18,6 +18,7 @@ const loginReducer = (state = initialState, action) => {
             }
         case loginConstants.LOGIN_SUCCESS:
             return{
+                ...state,
                 email: action.payload.email,
                 password: action.payload.password,
                 isLoggedIn: true
@@ -29,6 +30,7 @@ const loginReducer = (state = initialState, action) => {
             }
         case loginConstants.LOGOUT:
             return{
+                ...state,
                 email: '',
                 password: '',
                 isLoggedIn: false
