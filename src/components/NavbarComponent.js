@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -36,7 +36,7 @@ function NavbarComponent(props) {
                         props.user.isLoggedIn && 
                         <div className="navbar-nav ml-auto">
                             <div className="nav-item nav-link">
-                                <Link to="/login">Logout</Link>
+                                <Link to="/logout">Logout</Link>
                             </div>
                         </div>
                     }
