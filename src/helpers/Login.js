@@ -9,7 +9,9 @@ export const login = async({ email, password }) => {
             },
             body: JSON.stringify({ email, password })
         }
-        return await (await fetch(apis.userLogin, requestOptions)).json();
+        const user = await (await fetch(apis.userLogin, requestOptions)).json();
+        localStorage.setItem('user', JSON.stringify(user));
+        return user;
     } catch(error){
         throw new Error(error);
     }
