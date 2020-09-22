@@ -7,6 +7,7 @@ import Login from './LoginComponent';
 import Register from './RegisterComponent';
 import Home from './HomeComponent';
 import Logout from './LogoutComponent';
+import PrivateRoute from './PrivateRoute';
 
 function App(props) {
 
@@ -27,7 +28,7 @@ function App(props) {
         }
       </div>
         <Switch>
-          <Route exact path="/" component={Home}></Route>
+          <PrivateRoute exact path="/" component={Home}></PrivateRoute>
           <Route path="/login" component={Login}></Route>
           <Route path="/register" component={Register}></Route>
           <Route path="/logout" component={Logout}></Route>
