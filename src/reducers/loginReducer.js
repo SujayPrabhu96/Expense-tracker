@@ -1,4 +1,6 @@
+import { logout } from '../helpers/Logout';
 const { loginConstants } = require("../constants/actionTypes");
+
 
 const user = JSON.parse(localStorage.getItem('user'));
 const initialState = (user) ?  { isLoggedIn: true, user } : { isLoggedIn: false };
@@ -21,6 +23,7 @@ const loginReducer = (state = initialState, action) => {
                 isLoggedIn: false
             }
         case loginConstants.LOGOUT:
+            logout();
             return{
                 isLoggedIn: false
             }
