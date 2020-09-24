@@ -1,22 +1,21 @@
-import { allExpenseConstants } from "../constants/actionTypes"
-const { allExpenseConstants } = require("../constants/actionTypes");
+import { allExpenseConstants } from "../constants/actionTypes";
 
 export const getAllExpenseRequest = () => {
     return{
-        type: allExpenseConstants.GETALL_REQUEST
+        type: allExpenseConstants.FETHC_EXPENSE_REQUEST
     }
 };
 
 export const getAllExpenseSuccess = (expenses) => {
     return{
-        type: allExpenseConstants.GETALL_SUCCESS,
-        expenses
+        type: allExpenseConstants.FETCH_EXPENSE_SUCCESS,
+        payload: expenses
     }
 };
 
 export const getAllExpenseFailure = (error) => {
     return{
-        type: allExpenseConstants.GETALL_FAILURE,
-        error
+        type: allExpenseConstants.FETCH_EXPENSE_FAILURE,
+        payload: error
     }
 };
