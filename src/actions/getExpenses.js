@@ -2,7 +2,7 @@ import { allExpenseConstants } from "../constants/actionTypes";
 
 export const getAllExpenseRequest = () => {
     return{
-        type: allExpenseConstants.FETHC_EXPENSE_REQUEST
+        type: allExpenseConstants.FETCH_EXPENSE_REQUEST
     }
 };
 
