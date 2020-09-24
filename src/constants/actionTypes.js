@@ -20,3 +20,9 @@ export const loginConstants = {
     LOGIN_FAILURE: 'LOGIN_FAILURE',
     LOGOUT: 'LOGOUT'
 };
+
+export const allExpenseConstants = {
+    GETALL_REQUEST: 'GETALL_REQUEST',
+    GETALL_SUCCESS: 'GETALL_SUCCESS',
+    GETALL_FAILURE: 'GETALL_FAILURE'
+};
