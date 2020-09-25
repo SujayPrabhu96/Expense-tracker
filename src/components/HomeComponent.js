@@ -1,18 +1,25 @@
 import React, { useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { getUserExpenses } from '../actions/getExpenses';
+import { error } from '../actions/alertActions';
 
-function HomeComponent({ expenseData, getUserExpenses }) {
+function HomeComponent({ expenseData, getUserExpenses, error }) {
 
     useEffect(() => {
         getUserExpenses()
     }, []);
     
+    useEffect(() => {
+        expenseData.error && error("Something Went Wrong")
+    }, [expenseData]);
+
     return (
         <Fragment>
             <h1>Expense Tracker</h1>
 
-            <table className="table mt-3">
+            {expenseData.loading ? <h2>Loading....</h2> : 
+
+                <table className="table mt-3">
                 <thead>
                     <tr>
                         <th scope="col">Date</th>
@@ -37,6 +44,8 @@ function HomeComponent({ expenseData, getUserExpenses }) {
                         }
                 </tbody>
             </table>
+            }
+            
         </Fragment>
     );
 }
@@ -49,7 +58,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        getUserExpenses: () => dispatch(getUserExpenses())
+        getUserExpenses: () => dispatch(getUserExpenses()),
+        error: (message) => dispatch(error(message))
     }
 };
 
