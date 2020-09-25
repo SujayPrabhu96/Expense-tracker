@@ -10,6 +10,8 @@ import Logout from './LogoutComponent';
 import PrivateRoute from './PrivateRoute';
 import { updateLoginInitialState } from '../actions/loginActions';
 import { checkIfUserLoggedIn, getLoginInitialState } from '../helpers/Login';
+import AddExpenseComponent from './AddExpenseComponent';
+
 
 function App() {
 
@@ -43,6 +45,7 @@ function App() {
           <Route path="/login" component={Login}></Route>
           <Route path="/register" component={Register}></Route>
           <Route path="/logout" component={Logout}></Route>
+          <Route path="/add-expense" component={AddExpenseComponent}></Route>
           <Redirect from="*" to="/" />
         </Switch>
       </Router>
