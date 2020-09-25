@@ -8,6 +8,7 @@ import Register from './RegisterComponent';
 import Home from './HomeComponent';
 import Logout from './LogoutComponent';
 import PrivateRoute from './PrivateRoute';
+import AddExpenseComponent from './AddExpenseComponent';
 
 function App(props) {
 
@@ -32,6 +33,7 @@ function App(props) {
           <Route path="/login" component={Login}></Route>
           <Route path="/register" component={Register}></Route>
           <Route path="/logout" component={Logout}></Route>
+          <Route path="/add-expense" component={AddExpenseComponent}></Route>
           <Redirect from="*" to="/" />
         </Switch>
       </Router>
