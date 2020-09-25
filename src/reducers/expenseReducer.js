@@ -25,5 +25,8 @@ const expenseReducer = (state = initialState, action) => {
                 expenses: [],
                 error: action.payload
             }
+        default: return state
     }
 };
+
+export default expenseReducer;
