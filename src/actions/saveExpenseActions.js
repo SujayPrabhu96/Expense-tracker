@@ -7,9 +7,10 @@ const saveExpenseRequest = (expense) => {
     }
 };
 
-const saveExpenseSuccess = () => {
+const saveExpenseSuccess = (response) => {
     return{
-        type: saveExpenseConstants.SAVE_EXPENSE_SUCCESS
+        type: saveExpenseConstants.SAVE_EXPENSE_SUCCESS,
+        payload: response
     }
 };
 
