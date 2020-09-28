@@ -19,6 +19,7 @@ const registerReducer = (state = initialState, action) => {
             }
         case registerConstants.REGISTER_SUCCESS:
             return{
+                ...state,
                 isRegistered: true,
                 email: action.payload.email,
                 password: action.payload.password
