@@ -1,3 +1,5 @@
+import { domain } from './config';
+
 export const apis = {
-    userSignup: "http://localhost:5000/users/signup"
+    userSignup: `${domain}users/signup`
 };
