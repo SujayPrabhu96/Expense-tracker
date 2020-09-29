@@ -9,7 +9,6 @@ const initialState = {
 };
 
 const registerReducer = (state = initialState, action) => {
-
     switch(action.type){
         case registerConstants.REGISTER_REQUEST:
             return {
@@ -28,6 +27,12 @@ const registerReducer = (state = initialState, action) => {
             return{
                 ...state,
                 isRegistered: false
+            }
+        case registerConstants.CHANGE_REGISTER_INPUT:
+            return{
+                ...state,
+                email: action.payload.email,
+                password: action.payload.password
             }
         default:
             return state
