@@ -8,12 +8,9 @@ import { Link, useHistory } from 'react-router-dom';
 function RegisterComponent(props) {
 
     let history = useHistory();
-    console.log(props);
+
     const handleChange = (event) => {
-        props.changeRegisterInput({
-            ...props.user,
-            [event.target.name]: event.target.value
-        });
+        props.changeRegisterInput(event.target.name, event.target.value);
     };
 
     const handleClick = async (event) => {
@@ -71,16 +68,14 @@ const mapStateToProps = state => {
     }
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = {
 
-    return {
-        registerRequest,
-        registerSuccess,
-        registerFailure,
-        changeRegisterInput,
-        setSuccess,
-        setError
-    }
+    registerRequest,
+    registerSuccess,
+    registerFailure,
+    changeRegisterInput,
+    setSuccess,
+    setError
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RegisterComponent);

@@ -31,8 +31,7 @@ const registerReducer = (state = initialState, action) => {
         case registerConstants.CHANGE_REGISTER_INPUT:
             return{
                 ...state,
-                email: action.payload.email,
-                password: action.payload.password
+                [action.payload.name]: action.payload.value
             }
         default:
             return state

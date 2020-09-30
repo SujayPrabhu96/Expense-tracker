@@ -21,9 +21,11 @@ export const registerFailure = error => {
     }
 };
 
-export const changeRegisterInput = user => {
+export const changeRegisterInput = (name, value) => {
     return{
         type: registerConstants.CHANGE_REGISTER_INPUT,
-        payload: user
+        payload: {
+            name, value
+        }
     }
 };
