@@ -1,16 +1,7 @@
 import { apis } from '../apis/endPoints';
+import axios from '../apis/axios';
 
 export const register =  async ({ email, password }) => {
-    try{
-        const requestOptions = {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ email, password })
-        };
-        return await (await fetch(apis.userSignup, requestOptions)).json();
-    } catch(error){
-        throw new Error(error);
-    }
+    const response = await axios.post(apis.userSignup, { email, password });
+    return response.data;
 };

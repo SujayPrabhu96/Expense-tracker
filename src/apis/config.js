@@ -1,3 +1,3 @@
 module.exports = {
-    domain: process.env.REACT_APP_API_URL
+    APP_URL: process.env.REACT_APP_API_URL
 };
