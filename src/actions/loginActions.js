@@ -26,3 +26,9 @@ export const logout = () => {
         type: loginConstants.LOGOUT
     }
 };
+
+export const changeLoginInput = user => {
+    return{
+        name, value
+    }
+}

@@ -22,6 +22,11 @@ const loginReducer = (state = initialState, action) => {
             return{
                 isLoggedIn: false
             }
+        case loginConstants.CHANGE_LOGIN_INPUT:
+            return{
+                ...state,
+                [action.payload.name]: action.payload.value
+            }
         case loginConstants.LOGOUT:
             logout();
             return{
