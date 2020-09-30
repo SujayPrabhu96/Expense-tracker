@@ -1,6 +1,7 @@
 import { loginConstants } from '../constants/actionTypes';
 import { setSuccess, setError } from '../actions/alertActions';
 import { login } from '../helpers/Login';
+import { logout } from '../helpers/Logout';
 
 export const loginRequest = user => {
     return{
@@ -23,7 +24,8 @@ export const loginFailure = error => {
     }
 };
 
-export const logout = () => {
+export const userLogout = () => {
+    logout();
     return{
         type: loginConstants.LOGOUT
     }
