@@ -64,7 +64,7 @@ function RegisterComponent(props) {
 
 const mapStateToProps = state => {
     return {
-        user: state.registerReducer.user
+        user: state.registerReducer
     }
 };
 

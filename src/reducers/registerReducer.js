@@ -1,15 +1,13 @@
 import { registerConstants } from '../constants/actionTypes';
 
 const initialState = {
-     user: {
-        email: '',
-        password: '',
-        isRegistered: false, 
-     } 
+    email: '',
+    password: '',
+    isRegistered: false
 };
 
 const registerReducer = (state = initialState, action) => {
-    switch(action.type){
+    switch (action.type) {
         case registerConstants.REGISTER_REQUEST:
             return {
                 ...state,
@@ -17,19 +15,19 @@ const registerReducer = (state = initialState, action) => {
                 password: action.payload.password
             }
         case registerConstants.REGISTER_SUCCESS:
-            return{
+            return {
                 ...state,
                 isRegistered: true,
                 email: action.payload.email,
                 password: action.payload.password
             }
         case registerConstants.REGISTER_FAILURE:
-            return{
+            return {
                 ...state,
                 isRegistered: false
             }
         case registerConstants.CHANGE_REGISTER_INPUT:
-            return{
+            return {
                 ...state,
                 [action.payload.name]: action.payload.value
             }
