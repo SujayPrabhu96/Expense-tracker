@@ -1,4 +1,6 @@
 import { loginConstants } from '../constants/actionTypes';
+import { setSuccess, setError } from '../actions/alertActions';
+import { login } from '../helpers/Login';
 
 export const loginRequest = user => {
     return{
@@ -27,8 +29,31 @@ export const logout = () => {
     }
 };
 
-export const changeLoginInput = user => {
+export const changeLoginInput = (name, value) => {
     return{
-        name, value
+        type: loginConstants.CHANGE_LOGIN_INPUT,
+        payload: {
+            name, value
+        }
     }
-}
+};
+
+export const submitLogin = user => {
+    return async (dispatch) => {
+        dispatch(loginRequest(user));
+        try {
+            const response = await login(user);
+            if (response.isSuccess) {
+                dispatch(loginSuccess(response.token));
+                dispatch(setSuccess("Login Successful"));        
+            } else {
+                dispatch(loginFailure(response.message));
+                dispatch(setError(response.message));
+            }
+            return true;
+        } catch (error) {
+            dispatch(loginFailure(error));
+            dispatch(error(error));
+        }
+    };
+};

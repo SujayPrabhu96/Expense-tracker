@@ -3,7 +3,11 @@ const { loginConstants } = require("../constants/actionTypes");
 
 
 const user = JSON.parse(localStorage.getItem('user'));
-const initialState = (user) ?  { isLoggedIn: true, user } : { isLoggedIn: false };
+const initialState = {
+    email: '',
+    password: '',
+    isLoggedIn: false
+}
 
 const loginReducer = (state = initialState, action) => {
     switch(action.type){
@@ -15,11 +19,13 @@ const loginReducer = (state = initialState, action) => {
             }
         case loginConstants.LOGIN_SUCCESS:
             return{
+                ...state,
                 isLoggedIn: true,
                 user: action.payload
             }
         case loginConstants.LOGIN_FAILURE:
             return{
+                ...state,
                 isLoggedIn: false
             }
         case loginConstants.CHANGE_LOGIN_INPUT:
@@ -28,7 +34,6 @@ const loginReducer = (state = initialState, action) => {
                 [action.payload.name]: action.payload.value
             }
         case loginConstants.LOGOUT:
-            logout();
             return{
                 isLoggedIn: false
             }
