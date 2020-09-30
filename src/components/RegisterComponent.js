@@ -1,9 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { registerSuccess, registerFailure, registerRequest, changeRegisterInput } from '../actions/registerActions';
-import { setSuccess, setError } from '../actions/alertActions';
-import { register } from '../helpers/Registration';
 import { Link, useHistory } from 'react-router-dom';
+import { changeRegisterInput, submitRegistration } from '../actions/registerActions';
+import { setError } from '../actions/alertActions';
 
 function RegisterComponent(props) {
 
@@ -15,22 +14,12 @@ function RegisterComponent(props) {
 
     const handleClick = async (event) => {
         event.preventDefault();
-        props.registerRequest(props.user);
-        try {
-            const response = await register(props.user);
-            if (response.isSuccess) {
-                props.registerSuccess(response.user);
-                history.push("/login");
-                props.setSuccess("Registration Successful");
-            } else {
-                props.registerFailure(response.message);
-                props.setError(response.message);
-            }
-        } catch (error) {
-            props.registerFailure(error);
+        try{
+            const response = await props.submitRegistration(props.user);
+            history.push("/login");
+        } catch(error){
             props.setError(error);
         }
-
     };
 
     return (
@@ -69,12 +58,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-
-    registerRequest,
-    registerSuccess,
-    registerFailure,
     changeRegisterInput,
-    setSuccess,
+    submitRegistration,
     setError
 };
 
