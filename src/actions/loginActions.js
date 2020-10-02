@@ -24,8 +24,7 @@ export const loginFailure = error => {
     }
 };
 
-export const userLogout = () => {
-    logout();
+export const logoutSuccess = () => {
     return{
         type: loginConstants.LOGOUT
     }
@@ -58,4 +57,13 @@ export const submitLogin = user => {
             dispatch(error(error));
         }
     };
+};
+
+export const userLogout = () => {
+    return (dispatch) => {
+        logout();
+        dispatch(logoutSuccess());
+        dispatch(setSuccess("Logout Successful"));
+        return true;
+    }
 };

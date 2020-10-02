@@ -1,20 +1,15 @@
-import { connect } from "react-redux";
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { userLogout } from '../actions/loginActions';
-import { setSuccess } from "../actions/alertActions";
+import { setError } from "../actions/alertActions";
 
-function LogoutComponent(props){
+
+function LogoutComponent(){
 
     let history = useHistory();
-    props.userLogout();
+    userLogout();
     history.push("/login");
-    props.setSuccess("Logout Successful");
     return null;
 }
 
-const mapDispatchToProps =  {
-    userLogout,
-    setSuccess
-};
-
-export default connect(null, mapDispatchToProps)(LogoutComponent);
+export default LogoutComponent;
