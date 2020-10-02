@@ -1,8 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { userLogout } from '../actions/loginActions';
-import { setError } from "../actions/alertActions";
-
 
 function LogoutComponent(){
 
