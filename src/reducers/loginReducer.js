@@ -1,15 +1,9 @@
-import { logout } from '../helpers/Logout';
 const { loginConstants } = require("../constants/actionTypes");
 
-
-const user = JSON.parse(localStorage.getItem('user'));
-const initialState = {
-    email: '',
-    password: '',
-    isLoggedIn: false
-}
+const initialState = {};
 
 const loginReducer = (state = initialState, action) => {
+    console.log(action.type);
     switch(action.type){
         case loginConstants.LOGIN_REQUEST:
             return{
@@ -33,8 +27,18 @@ const loginReducer = (state = initialState, action) => {
                 ...state,
                 [action.payload.name]: action.payload.value
             }
+        case loginConstants.UPDATE_INITIAL_LOGIN_STATE:
+            return{
+                ...state,
+                user: action.payload,
+                isLoggedIn: true
+            }
         case loginConstants.LOGOUT:
             return{
+                ...state,
+                email: '',
+                password: '',
+                user: '',
                 isLoggedIn: false
             }
         default:

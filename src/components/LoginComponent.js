@@ -31,13 +31,13 @@ function LoginComponent(props) {
                 <div className="form-group row">
                     <label htmlFor="email" className="col-2"><strong>Email: </strong></label>
                     <div className="col-4">
-                        <input type="text" className="form-control" name="email" id="email" value={props.user.email} onChange={handleChange} />
+                        <input type="text" className="form-control" name="email" id="email" value={props.user.email || ''} onChange={handleChange} />
                     </div>
                 </div>
                 <div className="form-group row">
                     <label htmlFor="password" className="col-2"><strong>Password: </strong></label>
                     <div className="col-4">
-                        <input type="password" className="form-control" name="password" id="password" value={props.user.password} onChange={handleChange} />
+                        <input type="password" className="form-control" name="password" id="password" value={props.user.password || ''} onChange={handleChange} />
                     </div>
                 </div>
                 <div className="mb-3">

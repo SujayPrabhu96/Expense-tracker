@@ -8,14 +8,23 @@ import Register from './RegisterComponent';
 import Home from './HomeComponent';
 import Logout from './LogoutComponent';
 import PrivateRoute from './PrivateRoute';
+import { updateLoginInitialState } from '../actions/loginActions';
+import { checkIfUserLoggedIn, getLoginInitialState } from '../helpers/Login';
 
 function App(props) {
-
+  console.log(props);
   const [alert, setAlert] = useState(props.alert);
  
   useEffect(() =>{ 
       setAlert(props.alert);
-   }, [props]);
+  }, [props]);
+
+  useEffect(() => {
+    if(checkIfUserLoggedIn()){
+      const user = getLoginInitialState();
+      props.updateLoginInitialState(user);
+    }
+  }, [props.login.isLoggedIn]);
 
   return (
     <div className="container">
@@ -42,8 +51,13 @@ function App(props) {
 const mapStateToProps = state => {
   
   return {
-    alert: state.actionReducer
+    alert: state.actionReducer,
+    login: state.loginReducer
   }
 };
 
-export default connect(mapStateToProps, null)(App);
+const mapDispatchToProps = {
+  updateLoginInitialState
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

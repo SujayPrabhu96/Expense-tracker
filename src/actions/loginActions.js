@@ -24,11 +24,12 @@ export const loginFailure = error => {
     }
 };
 
-export const logoutSuccess = () => {
+export const updateLoginInitialState = user => {
     return{
-        type: loginConstants.LOGOUT
+        type: loginConstants.UPDATE_INITIAL_LOGIN_STATE,
+        payload: user
     }
-};
+}
 
 export const changeLoginInput = (name, value) => {
     return{
@@ -57,6 +58,12 @@ export const submitLogin = user => {
             dispatch(error(error));
         }
     };
+};
+
+export const logoutSuccess = () => {
+    return{
+        type: loginConstants.LOGOUT
+    }
 };
 
 export const userLogout = () => {
