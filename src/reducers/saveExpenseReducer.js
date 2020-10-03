@@ -15,13 +15,22 @@ export const saveExpenseReducer = (state = {}, action) => {
             }
         case saveExpenseConstants.SAVE_EXPENSE_SUCCESS:
             return{
+                ...state,
                 loading: false,
                 error: ''
             }
         case saveExpenseConstants.SAVE_EXPENSE_FAILURE:
             return{
+                ...state,
                 loading: false,
                 error: action.payload
             }
+        case saveExpenseConstants.CHANGE_EXPENSE_INPUT:
+            return{
+                ...state,
+                [action.payload.name]: action.payload.value
+            }
+        default:
+            return state
     }
 };
