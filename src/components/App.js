@@ -17,6 +17,13 @@ function App() {
   const state_alert = useSelector(state => state.actionReducer);
   const dispatch = useDispatch();
   const [alert, setAlert] = useState(state_alert);
+
+  const updateLoginStatus = () => {
+    if(checkIfUserLoggedIn()){
+      const user = getLoginInitialState();
+      dispatch(updateLoginInitialState(user));
+    }
+  }
  
   useEffect(() =>{ 
       setAlert(state_alert);
@@ -25,13 +32,6 @@ function App() {
   useEffect(() => {
     updateLoginStatus();
   }, [login.isLoggedIn]);
-
-  function updateLoginStatus(){
-    if(checkIfUserLoggedIn()){
-      const user = getLoginInitialState();
-      dispatch(updateLoginInitialState(user));
-    }
-  }
 
   return (
     <div className="container">

@@ -5,7 +5,6 @@ import { Route, Redirect } from 'react-router-dom';
 function PrivateRoute({ component: Component, ...rest }){
     
     const login = useSelector(state => state.loginReducer);
-
     return(
         <div>
             <Route {...rest} render={(props) => {
