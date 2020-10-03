@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getUserExpenses } from '../actions/getExpenses';
-import { error } from '../actions/alertActions';
+import { setError } from '../actions/alertActions';
 import { Link } from 'react-router-dom';
 
 
@@ -62,7 +62,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         getUserExpenses: () => dispatch(getUserExpenses()),
-        error: (message) => dispatch(error(message))
+        setError: (message) => dispatch(setError(message))
     }
 };
 
