@@ -3,7 +3,6 @@ const { loginConstants } = require("../constants/actionTypes");
 const initialState = {};
 
 const loginReducer = (state = initialState, action) => {
-    console.log(action.type);
     switch(action.type){
         case loginConstants.LOGIN_REQUEST:
             return{

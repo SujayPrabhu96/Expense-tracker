@@ -20,11 +20,15 @@ function App(props) {
   }, [props]);
 
   useEffect(() => {
+    updateLoginStatus();
+  }, [props.login.isLoggedIn]);
+
+  function updateLoginStatus(){
     if(checkIfUserLoggedIn()){
       const user = getLoginInitialState();
       props.updateLoginInitialState(user);
     }
-  }, [props.login.isLoggedIn]);
+  }
 
   return (
     <div className="container">
