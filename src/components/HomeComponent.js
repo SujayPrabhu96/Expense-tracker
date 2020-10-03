@@ -1,18 +1,21 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { getUserExpenses } from '../actions/getExpensesAction';
 import { setError } from '../actions/alertActions';
 import { Link } from 'react-router-dom';
 
 
-function HomeComponent({ expenseData, getUserExpenses, setError }) {
+function HomeComponent() {
+
+    const expenseData = useSelector(state => state.expenseReducer);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        getUserExpenses()
+        dispatch(getUserExpenses())
     }, []);
 
     useEffect(() => {
-        expenseData.error && setError("Something Went Wrong")
+        expenseData.error && dispatch(setError("Something Went Wrong"))
     }, [expenseData]);
 
     return (
@@ -53,17 +56,4 @@ function HomeComponent({ expenseData, getUserExpenses, setError }) {
     );
 }
 
-const mapStateToProps = state => {
-    return {
-        expenseData: state.expenseReducer
-    }
-};
-
-const mapDispatchToProps = dispatch => {
-    return {
-        getUserExpenses: () => dispatch(getUserExpenses()),
-        setError: (message) => dispatch(setError(message))
-    }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(HomeComponent);
+export default HomeComponent;
