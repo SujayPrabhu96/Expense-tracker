@@ -10,7 +10,7 @@ function AddExpenseComponent(){
                 <div className="form-group row">
                     <label htmlFor="date" className="col-2"><strong>Date: </strong></label>
                     <div className="col-4">
-                        <input type="text" name="date" id="date" className="form-control"/>
+                        <input type="text" name="date" id="date" className="form-control datepicker"/>
                     </div>
                 </div>
                 <div className="form-group row">

@@ -20,3 +20,12 @@ const saveExpenseFailure = (error) => {
         payload: error
     }
 };
+
+export const changeExpenseInput = (name, value) => {
+    return{
+        type: saveExpenseConstants.CHANGE_EXPENSE_INPUT,
+        payload: {
+            name, value
+        }
+    }
+};
