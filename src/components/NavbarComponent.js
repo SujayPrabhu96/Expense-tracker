@@ -1,9 +1,11 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-function NavbarComponent(props) {
+function NavbarComponent() {
     
+    const user = useSelector(state => state.loginReducer);
+
     return (
         <div>
             <nav className="navbar navbar-expand-md navbar-light bg-light">
@@ -22,7 +24,7 @@ function NavbarComponent(props) {
                             <Link to="/">Home</Link>
                         </div>
                     </div>
-                    {!props.user.isLoggedIn && 
+                    {!user.isLoggedIn && 
                     <div className="navbar-nav ml-auto">
                         <div className="nav-item nav-link">
                             <Link to="/register">Register</Link>
@@ -33,7 +35,7 @@ function NavbarComponent(props) {
                     </div>
                     }
                     {
-                        props.user.isLoggedIn && 
+                        user.isLoggedIn && 
                         <div className="navbar-nav ml-auto">
                             <div className="nav-item nav-link">
                                 <Link to="/logout">Logout</Link>
@@ -47,10 +49,4 @@ function NavbarComponent(props) {
     );
 }
 
-const mapStateToProps =  state => {
-    return{
-        user: state.loginReducer
-    }
-};
-
-export default connect(mapStateToProps, null)(NavbarComponent);
+export default NavbarComponent;
