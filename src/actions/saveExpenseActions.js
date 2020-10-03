@@ -1,4 +1,5 @@
 import { saveExpenseConstants } from '../constants/actionTypes';
+import { saveExpense } from '../helpers/Expenses';
 
 const saveExpenseRequest = (expense) => {
     return{
@@ -26,6 +27,18 @@ export const changeExpenseInput = (name, value) => {
         type: saveExpenseConstants.CHANGE_EXPENSE_INPUT,
         payload: {
             name, value
+        }
+    }
+};
+
+export const submitExpense = (expense) => {
+    return async (dispatch) => {
+        try{
+            dispatch(saveExpenseRequest(expense));
+            const response = await saveExpense(expense);
+            dispatch(saveExpenseSuccess(expense));
+        } catch(error){
+            dispatch(saveExpenseFailure(error));
         }
     }
 };
