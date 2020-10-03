@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import '../App.css';
@@ -14,9 +14,8 @@ import { checkIfUserLoggedIn, getLoginInitialState } from '../helpers/Login';
 function App() {
 
   const login = useSelector(state => state.loginReducer);
-  const state_alert = useSelector(state => state.actionReducer);
+  const alert = useSelector(state => state.actionReducer);
   const dispatch = useDispatch();
-  const [alert, setAlert] = useState(state_alert);
 
   const updateLoginStatus = () => {
     if(checkIfUserLoggedIn()){
@@ -24,10 +23,6 @@ function App() {
       dispatch(updateLoginInitialState(user));
     }
   }
- 
-  useEffect(() =>{ 
-      setAlert(state_alert);
-  }, [state_alert]);
 
   useEffect(() => {
     updateLoginStatus();
