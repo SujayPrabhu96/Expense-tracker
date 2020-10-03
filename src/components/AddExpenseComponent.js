@@ -1,6 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function AddExpenseComponent(){
+
     return(
         <div>
             <form>
@@ -22,6 +24,10 @@ function AddExpenseComponent(){
                     <div className="col-4">
                         <input type="text" name="description" id="description" className="form-control"/>
                     </div>
+                </div>
+                <div>
+                    <input type="submit" className="btn btn-primary" value="Add"/>
+                    <Link to="/" className="btn btn-danger delete">Cancel</Link>
                 </div>
             </form>
         </div>
