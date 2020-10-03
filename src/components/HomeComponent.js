@@ -12,7 +12,7 @@ function HomeComponent({ expenseData, getUserExpenses, setError }) {
     }, []);
 
     useEffect(() => {
-        expenseData.setError && setError("Something Went Wrong")
+        expenseData.error && setError("Something Went Wrong")
     }, [expenseData]);
 
     return (
