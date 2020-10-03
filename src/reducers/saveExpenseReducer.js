@@ -6,7 +6,7 @@ const initialState = {
     btnDisabled: false
 };
 
-export const saveExpenseReducer = (state = initialState, action) => {
+const saveExpenseReducer = (state = initialState, action) => {
     switch(action.type){
         case saveExpenseConstants.SAVE_EXPENSE_REQUEST:
             return{
@@ -37,3 +37,5 @@ export const saveExpenseReducer = (state = initialState, action) => {
             return state
     }
 };
+
+export default saveExpenseReducer;
