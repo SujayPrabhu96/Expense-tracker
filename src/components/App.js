@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import '../App.css';
 import Navbar from './NavbarComponent';
@@ -11,22 +11,25 @@ import PrivateRoute from './PrivateRoute';
 import { updateLoginInitialState } from '../actions/loginActions';
 import { checkIfUserLoggedIn, getLoginInitialState } from '../helpers/Login';
 
-function App(props) {
-  console.log(props);
-  const [alert, setAlert] = useState(props.alert);
+function App() {
+
+  const login = useSelector(state => state.loginReducer);
+  const state_alert = useSelector(state => state.actionReducer);
+  const dispatch = useDispatch();
+  const [alert, setAlert] = useState(state_alert);
  
   useEffect(() =>{ 
-      setAlert(props.alert);
-  }, [props]);
+      setAlert(state_alert);
+  }, [state_alert]);
 
   useEffect(() => {
     updateLoginStatus();
-  }, [props.login.isLoggedIn]);
+  }, [login.isLoggedIn]);
 
   function updateLoginStatus(){
     if(checkIfUserLoggedIn()){
       const user = getLoginInitialState();
-      props.updateLoginInitialState(user);
+      dispatch(updateLoginInitialState(user));
     }
   }
 
@@ -36,7 +39,7 @@ function App(props) {
       <Router>
         <Navbar />
         <div className="col-8 mt-4">
-        {alert.message &&
+        {alert && alert.message &&
           <div className={`alert ${alert.type}`}>{alert.message}</div>
         }
       </div>
@@ -52,16 +55,4 @@ function App(props) {
   );
 }
 
-const mapStateToProps = state => {
-  
-  return {
-    alert: state.actionReducer,
-    login: state.loginReducer
-  }
-};
-
-const mapDispatchToProps = {
-  updateLoginInitialState
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
