@@ -2,21 +2,24 @@ import { saveExpenseConstants } from '../constants/actionTypes';
 
 const initialState = {
     loading: false,
-    error: ''
+    error: '',
+    btnDisabled: false
 };
 
-export const saveExpenseReducer = (state = {}, action) => {
+export const saveExpenseReducer = (state = initialState, action) => {
     switch(action.type){
         case saveExpenseConstants.SAVE_EXPENSE_REQUEST:
             return{
                 ...state,
                 loading: true,
-                expense: action.payload
+                expense: action.payload,
+                btnDisabled: true
             }
         case saveExpenseConstants.SAVE_EXPENSE_SUCCESS:
             return{
                 ...state,
                 loading: false,
+                btnDisabled: true,
                 error: ''
             }
         case saveExpenseConstants.SAVE_EXPENSE_FAILURE:
