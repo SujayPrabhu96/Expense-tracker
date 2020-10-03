@@ -1,5 +1,6 @@
 import { allExpenseConstants } from "../constants/actionTypes";
 import { apis } from "../apis/endPoints";
+import { listExpenses } from "../helpers/Expenses";
 
 const getAllExpenseRequest = () => {
     return{
@@ -24,16 +25,8 @@ const getAllExpenseFailure = (error) => {
 export const getUserExpenses = () => {
     return async (dispatch) => {
         dispatch(getAllExpenseRequest());
-        const token = JSON.parse(localStorage.getItem('user')).token;
         try{
-            const requestOptions = {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': token
-                }
-            }
-            const expenses = await (await fetch(apis.userExpenses, requestOptions)).json();
+            const expenses = await listExpenses();
             dispatch(getAllExpenseSuccess(expenses));
         } catch(error){
             dispatch(getAllExpenseFailure(error));

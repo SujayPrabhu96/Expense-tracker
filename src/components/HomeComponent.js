@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getUserExpenses } from '../actions/getExpenses';
+import { getUserExpenses } from '../actions/getExpensesAction';
 import { setError } from '../actions/alertActions';
 import { Link } from 'react-router-dom';
 
 
-function HomeComponent({ expenseData, getUserExpenses, error }) {
+function HomeComponent({ expenseData, getUserExpenses, setError }) {
 
     useEffect(() => {
         getUserExpenses()
     }, []);
 
     useEffect(() => {
-        expenseData.error && error("Something Went Wrong")
+        expenseData.setError && setError("Something Went Wrong")
     }, [expenseData]);
 
     return (
