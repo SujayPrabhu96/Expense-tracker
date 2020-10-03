@@ -1,15 +1,27 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeExpenseInput } from '../actions/saveExpenseActions';
+import { changeExpenseInput, submitExpense } from '../actions/saveExpenseActions';
+import { setError } from '../actions/alertActions';
 
 function AddExpenseComponent(){
 
+    const history = useHistory();
     const expense = useSelector(state => state.saveExpenseReducer);
     const dispatch = useDispatch();
 
     const handleChange = (event) => {
         dispatch(changeExpenseInput(event.target.name, event.target.value));
+    }
+
+    const handleClick = async (event) => {
+        event.preventDefault();
+        try{
+            const response = await dispatch(submitExpense(expense));
+            history.push("/");
+        } catch(error){
+            dispatch(setError(error));
+        }
     }
 
     return(
@@ -35,7 +47,7 @@ function AddExpenseComponent(){
                     </div>
                 </div>
                 <div>
-                    <input type="submit" className="btn btn-primary" value="Add"/>
+                    <input type="submit" className="btn btn-primary" value="Add" onClick={handleClick} disabled={expense.btnDisabled}/>
                     <Link to="/" className="btn btn-danger delete">Cancel</Link>
                 </div>
             </form>
