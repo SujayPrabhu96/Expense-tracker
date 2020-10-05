@@ -15,20 +15,14 @@ const expenseReducer = (state = initialState, action) => {
             }
         case allExpenseConstants.FETCH_EXPENSE_SUCCESS:
             return{
-<<<<<<< HEAD
                 ...state,
-=======
->>>>>>> 39f95701a3d4e562750b7c113f6afa0de1d45326
                 loading: false,
                 expenses: action.payload,
                 error: ''
             }
         case allExpenseConstants.FETCH_EXPENSE_FAILURE:
             return{
-<<<<<<< HEAD
                 ...state,
-=======
->>>>>>> 39f95701a3d4e562750b7c113f6afa0de1d45326
                 loading: false,
                 expenses: [],
                 error: action.payload

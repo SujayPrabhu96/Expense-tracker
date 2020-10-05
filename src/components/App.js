@@ -8,11 +8,8 @@ import Register from './RegisterComponent';
 import Home from './HomeComponent';
 import Logout from './LogoutComponent';
 import PrivateRoute from './PrivateRoute';
-<<<<<<< HEAD
 import { updateLoginInitialState } from '../actions/loginActions';
 import { checkIfUserLoggedIn, getLoginInitialState } from '../helpers/Login';
-=======
->>>>>>> 39f95701a3d4e562750b7c113f6afa0de1d45326
 import AddExpenseComponent from './AddExpenseComponent';
 
 

@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-<<<<<<< HEAD
 import { useSelector, useDispatch } from 'react-redux';
 import { getUserExpenses } from '../actions/getExpensesAction';
 import { setError } from '../actions/alertActions';
@@ -19,24 +18,6 @@ function HomeComponent() {
         expenseData.error && dispatch(setError("Something Went Wrong"))
     }, [expenseData]);
 
-=======
-import { connect } from 'react-redux';
-import { getUserExpenses } from '../actions/getExpenses';
-import { error } from '../actions/alertActions';
-import { Link } from 'react-router-dom';
-
-
-function HomeComponent({ expenseData, getUserExpenses, error }) {
-
-    useEffect(() => {
-        getUserExpenses()
-    }, []);
-
-    useEffect(() => {
-        expenseData.error && error("Something Went Wrong")
-    }, [expenseData]);
-
->>>>>>> 39f95701a3d4e562750b7c113f6afa0de1d45326
     return (
         <div>
             <h1>Expense Tracker</h1>
@@ -75,17 +56,5 @@ function HomeComponent({ expenseData, getUserExpenses, error }) {
     );
 }
 
-const mapStateToProps = state => {
-    return {
-        expenseData: state.expenseReducer
-    }
-};
 
-const mapDispatchToProps = dispatch => {
-    return {
-        getUserExpenses: () => dispatch(getUserExpenses()),
-        error: (message) => dispatch(error(message))
-    }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(HomeComponent);
+export default HomeComponent;
