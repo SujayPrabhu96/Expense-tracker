@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import DatePicker from "react-datepicker";
+import moment from 'moment';
+import 'react-datepicker/dist/react-datepicker.css';
 import { changeExpenseInput, submitExpense } from '../actions/saveExpenseActions';
 import { setError } from '../actions/alertActions';
 
@@ -9,6 +12,12 @@ function AddExpenseComponent(){
     const history = useHistory();
     const expense = useSelector(state => state.saveExpenseReducer);
     const dispatch = useDispatch();
+    console.log(moment(expense.date, "YYYY-MM-DD").toDate());
+
+    const handleDateChange = (date) => {
+        let parsed_date = moment(date).format('YYYY-MM-DD');
+        dispatch(changeExpenseInput("date", parsed_date));
+    };
 
     const handleChange = (event) => {
         dispatch(changeExpenseInput(event.target.name, event.target.value));
@@ -31,7 +40,12 @@ function AddExpenseComponent(){
                 <div className="form-group row">
                     <label htmlFor="date" className="col-2"><strong>Date: </strong></label>
                     <div className="col-4">
-                        <input type="text" name="date" id="date" className="form-control" value={expense.date} onChange={handleChange}/>
+                        <DatePicker 
+                            className="form-control" 
+                            selected={expense.date ? moment(expense.date, "YYYY-MM-DD").toDate() : new Date()} 
+                            onChange={handleDateChange} 
+                        >
+                        </DatePicker>
                     </div>
                 </div>
                 <div className="form-group row">
