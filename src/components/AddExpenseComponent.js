@@ -12,7 +12,6 @@ function AddExpenseComponent(){
     const history = useHistory();
     const expense = useSelector(state => state.saveExpenseReducer);
     const dispatch = useDispatch();
-    console.log(moment(expense.date, "YYYY-MM-DD").toDate());
 
     const handleDateChange = (date) => {
         let parsed_date = moment(date).format('YYYY-MM-DD');
@@ -42,7 +41,7 @@ function AddExpenseComponent(){
                     <div className="col-4">
                         <DatePicker 
                             className="form-control" 
-                            selected={expense.date ? moment(expense.date, "YYYY-MM-DD").toDate() : new Date()} 
+                            selected={expense.date && moment(expense.date, "YYYY-MM-DD").toDate()} 
                             onChange={handleDateChange} 
                         >
                         </DatePicker>
