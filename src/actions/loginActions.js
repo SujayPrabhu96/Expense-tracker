@@ -55,7 +55,7 @@ export const submitLogin = user => {
             return true;
         } catch (error) {
             dispatch(loginFailure(error));
-            dispatch(error(error));
+            dispatch(setError(error));
         }
     };
 };

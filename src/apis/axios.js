@@ -12,9 +12,9 @@ const instance = axios.create({
 instance.interceptors.request.use(
     (config) => {
       if (!config.headers.Authorization) {
-        const token = getLoginInitialState().token;
-        if (token) {
-          config.headers.Authorization = token;
+        const login_state = getLoginInitialState();
+        if (login_state) {
+          config.headers.Authorization = login_state.token;
         }
       }
       return config;
