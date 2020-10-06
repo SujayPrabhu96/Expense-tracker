@@ -18,6 +18,10 @@ function HomeComponent() {
         expenseData.error && dispatch(setError("Something Went Wrong"))
     }, [expenseData]);
 
+    const handleDeleteClick = (event) => {
+        event.preventDefault();
+    };
+
     return (
         <div>
             <h1>Expense Tracker</h1>
@@ -31,6 +35,7 @@ function HomeComponent() {
                             <th scope="col">Date</th>
                             <th scope="col">Description</th>
                             <th scope="col">Amount</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,6 +49,9 @@ function HomeComponent() {
                                         <td>{expense.date}</td>
                                         <td>{expense.description}</td>
                                         <td>{expense.amount}</td>
+                                        <td>
+                                            <input type="submit" className="btn btn-danger" value="Delete" id={id}  onClick={handleDeleteClick}/>
+                                        </td>
                                     </tr>
                                 );
                             })
