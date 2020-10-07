@@ -29,6 +29,10 @@ function HomeComponent() {
         
     };
 
+    const handleEditClick = async (event) => {
+        console.log("Edit Clicked");
+    } 
+
     return (
         <div>
             <h1>Expense Tracker</h1>
@@ -57,6 +61,7 @@ function HomeComponent() {
                                         <td>{expense.description}</td>
                                         <td>{expense.amount}</td>
                                         <td>
+                                            <input type="submit" className="btn btn-info" value="Edit" id={expense.id} onClick={handleEditClick}/>
                                             <input type="submit" className="btn btn-danger" value="Delete" id={expense.id}  onClick={handleDeleteClick}/>
                                         </td>
                                     </tr>
