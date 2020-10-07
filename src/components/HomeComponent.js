@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getUserExpenses } from '../actions/getExpensesAction';
 import { setError } from '../actions/alertActions';
+import { handleDeleteExpense } from '../actions/deleteExpenseAction';
 import { Link } from 'react-router-dom';
 
 
@@ -18,8 +19,14 @@ function HomeComponent() {
         expenseData.error && dispatch(setError("Something Went Wrong"))
     }, [expenseData]);
 
-    const handleDeleteClick = (event) => {
-        event.preventDefault();
+    const handleDeleteClick = async (event) => {
+        try{
+            const response = await dispatch(handleDeleteExpense(event.target.id));
+            dispatch(getUserExpenses());
+        } catch(error){
+            dispatch(setError(error));
+        }
+        
     };
 
     return (
@@ -50,7 +57,7 @@ function HomeComponent() {
                                         <td>{expense.description}</td>
                                         <td>{expense.amount}</td>
                                         <td>
-                                            <input type="submit" className="btn btn-danger" value="Delete" id={id}  onClick={handleDeleteClick}/>
+                                            <input type="submit" className="btn btn-danger" value="Delete" id={expense.id}  onClick={handleDeleteClick}/>
                                         </td>
                                     </tr>
                                 );
