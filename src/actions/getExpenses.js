@@ -1,4 +1,4 @@
-import { allExpenseConstants } from "../constants/actionTypes";
+import { allExpenseConstants, getExpenseConstants } from "../constants/actionTypes";
 import { listExpenses } from '../helpers/Expenses';
 import { setSuccess, setError } from '../actions/alertActions';
 
@@ -18,6 +18,27 @@ const getAllExpenseSuccess = (expenses) => {
 const getAllExpenseFailure = (error) => {
     return{
         type: allExpenseConstants.FETCH_EXPENSE_FAILURE,
+        payload: error
+    }
+};
+
+const getExpenseRequest = (expense_id) => {
+    return{
+        type: getExpenseConstants.GET_EXPENSE_REQUEST,
+        payload: expense_id
+    }
+};
+
+const getExpenseSuccess = (expense) => {
+    return{
+        type: getExpenseConstants.GET_EXPENSE_SUCCESS,
+        payload: expense
+    }
+};
+
+const getExpenseFailure = (error) => {
+    return{
+        type: getExpenseConstants.GET_EXPENSE_FAILURE,
         payload: error
     }
 };
