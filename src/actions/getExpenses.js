@@ -56,3 +56,17 @@ export const getUserExpenses = () => {
         }
     }
 };
+
+export const handleGetExpense = (expense_id) => {
+    return async (dispatch) => {
+        try{
+            dispatch(getExpenseRequest(expense_id));
+            const response = '';
+            dispatch(getExpenseSuccess(response));
+            return true;
+        } catch(error){
+            dispatch(getExpenseFailure(error));
+            dispatch(setError("Something Went Wrong"));
+        }
+    }
+};
