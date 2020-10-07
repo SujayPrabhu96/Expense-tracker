@@ -1,5 +1,4 @@
 import { deleteExpenseConstants } from '../constants/actionTypes';
-import { act } from 'react-dom/test-utils';
 
 const initialState = {
     loading: false,
