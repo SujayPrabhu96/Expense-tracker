@@ -22,7 +22,8 @@ export const saveExpense = async (expense) => {
 export const deleteExpense = async (id) => {
     try{
         const delete_url = `${apis.deleteExpense}${id}`;
-        const response = axios.delete(delete_url);
+        const response = await axios.delete(delete_url);
+        return response.data;
     } catch(error){
         throw new Error(error);
     }
