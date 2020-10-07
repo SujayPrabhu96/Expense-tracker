@@ -1,6 +1,6 @@
 import { saveExpenseConstants } from '../constants/actionTypes';
 import { saveExpense } from '../helpers/Expenses';
-import { setSuccess } from './alertActions';
+import { setSuccess, setError } from './alertActions';
 
 const saveExpenseRequest = (expense) => {
     return{
@@ -37,11 +37,12 @@ export const submitExpense = (expense) => {
         try{
             dispatch(saveExpenseRequest(expense));
             const response = await saveExpense(expense);
-            dispatch(saveExpenseSuccess(expense));
+            dispatch(saveExpenseSuccess(response));
             dispatch(setSuccess("Expense Saved"));
             return true;
         } catch(error){
             dispatch(saveExpenseFailure(error));
+            dispatch(setError(error));
         }
     }
 };
