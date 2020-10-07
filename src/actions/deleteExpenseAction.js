@@ -1,4 +1,5 @@
 import { deleteExpenseConstants } from '../constants/actionTypes';
+import { deleteExpense } from '../helpers/Expenses';
 
 const deleteExpenseRequest = (expense_id) => {
     return{
@@ -18,5 +19,19 @@ const deleteExpenseFailure = (error) => {
     return{
         type: deleteExpenseConstants.DELETE_EXPENSE_FAILURE,
         payload: error
+    }
+};
+
+export const handleDeleteExpense = (expense_id) => {
+    return async (dispatch) => {
+        try{
+            dispatch(deleteExpenseRequest(expense_id));
+            const response = await deleteExpense(expense_id);
+            dispatch(deleteExpenseSuccess(response));
+            dispatch(setSuccess("Expense Deleted"));
+        } catch(error){
+            dispatch(deleteExpenseFailure(error));
+            dispatch(setError(error));
+        }
     }
 };
