@@ -3,5 +3,6 @@ export const apis = {
     userLogin: "/users/login",
     userExpenses: "/users/expenses",
     saveExpense: "/users/save-expense",
+    getExpense: "/users/get-expense",
     deleteExpense: "/users/delete-expense/"
 };
