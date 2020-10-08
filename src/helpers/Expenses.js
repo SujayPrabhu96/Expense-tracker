@@ -19,6 +19,16 @@ export const saveExpense = async (expense) => {
     }
 }
 
+export const getExpense = async (id) => {
+    try{
+        const get_url = `${apis.getExpense}${id}`;
+        const response = await axios.get(get_url);
+        return response.data;
+    } catch(error){
+        throw new Error(error);
+    }
+};
+
 export const deleteExpense = async (id) => {
     try{
         const delete_url = `${apis.deleteExpense}${id}`;
