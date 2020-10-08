@@ -3,11 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getUserExpenses, getUserExpense } from '../actions/getExpensesAction';
 import { setError } from '../actions/alertActions';
 import { handleDeleteExpense } from '../actions/deleteExpenseAction';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 
 function HomeComponent() {
 
+    let history = useHistory();
     const expenseData = useSelector(state => state.expenseReducer);
     const dispatch = useDispatch();
 
@@ -32,6 +33,7 @@ function HomeComponent() {
     const handleEditClick = async (event) => {
         try{
             const response = await dispatch(getUserExpense(event.target.id));
+            history.push("/edit-expense");
         } catch(error){
             dispatch(setError(error));
         }
