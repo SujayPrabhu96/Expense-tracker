@@ -1,5 +1,6 @@
-import { allExpenseConstants } from "../constants/actionTypes";
+import { allExpenseConstants, getExpenseConstants } from "../constants/actionTypes";
 import { listExpenses, getExpense } from "../helpers/Expenses";
+import { setError } from "../actions/alertActions";
 
 const getAllExpenseRequest = () => {
     return{
@@ -48,8 +49,10 @@ export const getUserExpenses = () => {
         try{
             const expenses = await listExpenses();
             dispatch(getAllExpenseSuccess(expenses));
+            return true;
         } catch(error){
             dispatch(getAllExpenseFailure(error));
+            dispatch(setError("Something Went Wrong"));
         }
     }
 };
