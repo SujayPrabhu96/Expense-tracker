@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getUserExpenses } from '../actions/getExpensesAction';
+import { getUserExpenses, getUserExpense } from '../actions/getExpensesAction';
 import { setError } from '../actions/alertActions';
 import { handleDeleteExpense } from '../actions/deleteExpenseAction';
 import { Link } from 'react-router-dom';
@@ -30,7 +30,11 @@ function HomeComponent() {
     };
 
     const handleEditClick = async (event) => {
-        console.log("Edit Clicked");
+        try{
+            const response = await dispatch(getUserExpense(event.target.id));
+        } catch(error){
+            dispatch(setError(error));
+        }
     } 
 
     return (

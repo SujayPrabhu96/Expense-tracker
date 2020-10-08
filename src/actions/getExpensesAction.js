@@ -1,5 +1,5 @@
 import { allExpenseConstants } from "../constants/actionTypes";
-import { listExpenses } from "../helpers/Expenses";
+import { listExpenses, getExpense } from "../helpers/Expenses";
 
 const getAllExpenseRequest = () => {
     return{
@@ -54,11 +54,11 @@ export const getUserExpenses = () => {
     }
 };
 
-export const handleGetExpense = (expense_id) => {
+export const getUserExpense = (expense_id) => {
     return async (dispatch) => {
         try{
             dispatch(getExpenseRequest(expense_id));
-            const response = '';
+            const response = await getExpense(expense_id);
             dispatch(getExpenseSuccess(response));
             return true;
         } catch(error){
