@@ -11,6 +11,7 @@ import PrivateRoute from './PrivateRoute';
 import { updateLoginInitialState } from '../actions/loginActions';
 import { checkIfUserLoggedIn, getLoginInitialState } from '../helpers/Login';
 import AddExpenseComponent from './AddExpenseComponent';
+import EditExpenseComponent from './EditExpenseComponent';
 
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
           <Route path="/register" component={Register}></Route>
           <Route path="/logout" component={Logout}></Route>
           <Route path="/add-expense" component={AddExpenseComponent}></Route>
+          <Route path="/edit-expense" component={EditExpenseComponent}></Route>
           <Redirect from="*" to="/" />
         </Switch>
       </Router>
