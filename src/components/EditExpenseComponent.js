@@ -8,6 +8,16 @@ import 'react-datepicker/dist/react-datepicker.css';
 function EditExpenseComponent(){
 
     const expenseData = useSelector(state => state.getExpenseReducer);
+    const dispatch = useDispatch();
+
+    const handleDateChange = (date) => {
+        let parsed_date = moment(date).format('YYYY-MM-DD');
+        // dispatch(changeExpenseInput("date", parsed_date));
+    };
+
+    const handleChange = (event) => {
+        // dispatch(changeExpenseInput(event.target.name, event.target.value));
+    }
 
     return(
         <div>
@@ -20,7 +30,8 @@ function EditExpenseComponent(){
                     <div className="col-4">
                         <DatePicker 
                             className="form-control" 
-                            selected={expenseData.expense.data.date && moment(expenseData.expense.data.date, "YYYY-MM-DD").toDate()} 
+                            selected={expenseData.expense.data.date && moment(expenseData.expense.data.date, "YYYY-MM-DD").toDate()}
+                            onChange={handleDateChange}
                         >
                         </DatePicker>
                     </div>
@@ -28,13 +39,13 @@ function EditExpenseComponent(){
                 <div className="form-group row">
                     <label htmlFor="amount" className="col-2"><strong>Amount: </strong></label>
                     <div className="col-4">
-                        <input type="number" name="amount" id="amount" className="form-control" value={expenseData.expense.data.amount}/>
+                        <input type="number" name="amount" id="amount" className="form-control" value={expenseData.expense.data.amount} onChange={handleChange}/>
                     </div>
                 </div>
                 <div className="form-group row">
                     <label htmlFor="description" className="col-2"><strong>Description: </strong></label>
                     <div className="col-4">
-                        <input type="text" name="description" id="description" className="form-control" value={expenseData.expense.data.description}/>
+                        <input type="text" name="description" id="description" className="form-control" value={expenseData.expense.data.description} onChange={handleChange}/>
                     </div>
                 </div>
                 <div>
