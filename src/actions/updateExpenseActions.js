@@ -1,4 +1,5 @@
 import { updateExpenseConstants } from '../constants/actionTypes';
+import { setSuccess, setError } from '../actions/alertActions';
 
 const updateExpenseRequest = (expense) => {
     return{
@@ -26,6 +27,20 @@ export const changeExpenseInput = (name, value) => {
         type: updateExpenseConstants.CHANGE_EXPENSE_INPUT,
         payload: {
             name, value
+        }
+    }
+};
+
+export const handleupdateExpense = (expense) => {
+    return async (dispatch) => {
+        try{
+            dispatch(updateExpenseRequest(expense));
+            dispatch(updateExpenseSuccess(expense));
+            dispatch(setSuccess("Expense Updated"));
+            return true;
+        } catch(error){
+            dispatch(updateExpenseFailure(error));
+            dispatch(setError(error));
         }
     }
 };
