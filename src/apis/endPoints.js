@@ -5,5 +5,5 @@ export const apis = {
     saveExpense: "/users/save-expense",
     getExpense: "/users/get-expense/",
     deleteExpense: "/users/delete-expense/",
-    updateExpense: "/users/update-expense"
+    updateExpense: "/users/update-expense/"
 };

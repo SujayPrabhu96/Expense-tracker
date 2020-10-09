@@ -1,6 +1,7 @@
 import { updateExpenseConstants } from '../constants/actionTypes';
 
 const initialState = {
+    expense_id: '',
     loading: false,
     error: '',
     btnDisabled: false
@@ -13,7 +14,8 @@ const updateExpenseReducer = (state = initialState, action) => {
                 ...state,
                 loading: true,
                 btnDisabled: true,
-                expense: action.payload
+                expense_id: action.payload.expense_id,
+                expense: action.payload.expense
             }
         case updateExpenseConstants.UPDATE_EXPENSE_SUCCESS:
             return{
