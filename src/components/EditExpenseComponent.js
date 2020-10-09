@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import DatePicker from "react-datepicker";
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
+import { changeExpenseInput } from '../actions/updateExpenseActions';
 
 function EditExpenseComponent(){
 
@@ -12,11 +13,11 @@ function EditExpenseComponent(){
 
     const handleDateChange = (date) => {
         let parsed_date = moment(date).format('YYYY-MM-DD');
-        // dispatch(changeExpenseInput("date", parsed_date));
+        dispatch(changeExpenseInput("date", parsed_date));
     };
 
     const handleChange = (event) => {
-        // dispatch(changeExpenseInput(event.target.name, event.target.value));
+        dispatch(changeExpenseInput(event.target.name, event.target.value));
     }
 
     return(
