@@ -20,6 +20,11 @@ function EditExpenseComponent(){
         dispatch(changeExpenseInput(event.target.name, event.target.value));
     }
 
+    const handleUpdateClick = async (event) => {
+        event.preventDefault();
+        console.log("handle update");
+    }
+
     return(
         <div>
             {expenseData.loading ? <h2>Loading...</h2> :
@@ -50,7 +55,7 @@ function EditExpenseComponent(){
                     </div>
                 </div>
                 <div>
-                    <input type="submit" className="btn btn-primary" value="Update"/>
+                    <input type="submit" className="btn btn-primary" value="Update" onClick={handleUpdateClick} disabled={expenseData.btnDisabled}/>
                     <Link to="/" className="btn btn-danger delete">Cancel</Link>
                 </div>
             </form>
