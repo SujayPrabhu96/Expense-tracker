@@ -1,4 +1,4 @@
-import { getExpenseConstants } from "../constants/actionTypes";
+import { getExpenseConstants, updateExpenseConstants } from "../constants/actionTypes";
 
 const initialState = {
     loading: false,
@@ -6,26 +6,37 @@ const initialState = {
 };
 
 const getExpenseReducer = (state = initialState, action) => {
-    switch(action.type){
+    switch (action.type) {
         case getExpenseConstants.GET_EXPENSE_REQUEST:
-            return{
+            return {
                 ...state,
                 loading: true,
                 expense_id: action.payload
             }
         case getExpenseConstants.GET_EXPENSE_SUCCESS:
-            return{
+            return {
                 ...state,
                 loading: false,
                 expense: action.payload
             }
         case getExpenseConstants.GET_EXPENSE_FAILURE:
-            return{
+            return {
                 ...state,
                 loading: false,
                 error: action.payload
             }
-        default: 
+        case updateExpenseConstants.CHANGE_EXPENSE_INPUT:
+            return {
+                ...state,
+                expense: {
+                    ...state.expense,
+                    data: {
+                        ...state.expense.data,
+                        [action.payload.name]: action.payload.value
+                    }
+                }
+            }
+        default:
             return state;
     }
 };

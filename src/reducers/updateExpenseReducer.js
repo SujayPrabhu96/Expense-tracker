@@ -29,11 +29,6 @@ const updateExpenseReducer = (state = initialState, action) => {
                 btnDisabled: false,
                 error: action.payload
             }
-        case updateExpenseConstants.CHANGE_EXPENSE_INPUT:
-            return{
-                ...state,
-                [action.payload.name]: action.payload.value
-            }
         default:
             return state;
     }
