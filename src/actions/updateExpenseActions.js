@@ -31,7 +31,7 @@ export const changeExpenseInput = (name, value) => {
     }
 };
 
-export const handleupdateExpense = (expense) => {
+export const handleUpdateExpense = (expense) => {
     return async (dispatch) => {
         try{
             dispatch(updateExpenseRequest(expense));
