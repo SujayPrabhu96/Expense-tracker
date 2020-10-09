@@ -38,3 +38,13 @@ export const deleteExpense = async (id) => {
         throw new Error(error);
     }
 }
+
+export const updateExpense = async (id , expense) => {
+    try{
+        const update_url = `${apis.updateExpense}${id}`;
+        const response = await axios.post(update_url);
+        return response.data;
+    } catch(error){
+        throw new Error(error);
+    }
+}
