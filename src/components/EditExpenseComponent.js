@@ -1,13 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import DatePicker from "react-datepicker";
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
-import { changeExpenseInput } from '../actions/updateExpenseActions';
+import { changeExpenseInput, handleUpdateExpense } from '../actions/updateExpenseActions';
+import { setError } from '../actions/alertActions';
 
 function EditExpenseComponent(){
 
+    let histroty = useHistory();
     const expenseData = useSelector(state => state.getExpenseReducer);
     const dispatch = useDispatch();
 
@@ -22,7 +24,12 @@ function EditExpenseComponent(){
 
     const handleUpdateClick = async (event) => {
         event.preventDefault();
-        console.log("handle update");
+        try{
+            const response = await dispatch(handleUpdateExpense(expenseData.expense_id, expenseData.expense.data));
+            histroty.push("/");
+        } catch(error){
+            setError("Something Went Wrong");
+        }
     }
 
     return(
