@@ -1,7 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 function NavbarComponent() {
+    
+    const user = useSelector(state => state.loginReducer);
 
     return (
         <div>
@@ -21,6 +24,7 @@ function NavbarComponent() {
                             <Link to="/">Home</Link>
                         </div>
                     </div>
+                    {!user.isLoggedIn && 
                     <div className="navbar-nav ml-auto">
                         <div className="nav-item nav-link">
                             <Link to="/register">Register</Link>
@@ -29,6 +33,15 @@ function NavbarComponent() {
                             <Link to="/login">Login</Link>
                         </div>
                     </div>
+                    }
+                    {
+                        user.isLoggedIn && 
+                        <div className="navbar-nav ml-auto">
+                            <div className="nav-item nav-link">
+                                <Link to="/logout">Logout</Link>
+                            </div>
+                        </div>
+                    }
                 </div>
             </nav>
 
