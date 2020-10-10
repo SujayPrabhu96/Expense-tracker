@@ -19,13 +19,14 @@ const saveExpenseReducer = (state = initialState, action) => {
             return{
                 ...state,
                 loading: false,
-                btnDisabled: true,
-                error: ''
+                btnDisabled: false,
+                response: action.payload
             }
         case saveExpenseConstants.SAVE_EXPENSE_FAILURE:
             return{
                 ...state,
                 loading: false,
+                btnDisabled: false,
                 error: action.payload
             }
         case saveExpenseConstants.CHANGE_EXPENSE_INPUT:
