@@ -26,7 +26,7 @@ function EditExpenseComponent(){
         event.preventDefault();
         try{
             const response = await dispatch(handleUpdateExpense(expenseData.expense_id, expenseData.expense.data));
-            histroty.push("/");
+            histroty.push("/expenses");
         } catch(error){
             setError("Something Went Wrong");
         }
@@ -63,7 +63,7 @@ function EditExpenseComponent(){
                 </div>
                 <div>
                     <input type="submit" className="btn btn-primary" value="Update" onClick={handleUpdateClick} disabled={expenseData.btnDisabled}/>
-                    <Link to="/" className="btn btn-danger delete">Cancel</Link>
+                    <Link to="/expenses" className="btn btn-danger delete">Cancel</Link>
                 </div>
             </form>
         }

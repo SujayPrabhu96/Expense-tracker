@@ -26,7 +26,7 @@ function AddExpenseComponent() {
         event.preventDefault();
         try {
             const response = await dispatch(submitExpense(expense));
-            history.push("/");
+            history.push("/expenses");
         } catch (error) {
             dispatch(setError(error));
         }
@@ -62,7 +62,7 @@ function AddExpenseComponent() {
                     </div>
                     <div>
                         <input type="submit" className="btn btn-primary" value="Add" onClick={handleClick} disabled={expense.btnDisabled} />
-                        <Link to="/" className="btn btn-danger delete">Cancel</Link>
+                        <Link to="/expenses" className="btn btn-danger delete">Cancel</Link>
                     </div>
                 </form>
             }
