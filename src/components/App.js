@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import '../App.css';
 import Navbar from './NavbarComponent';
 import Login from './LoginComponent';
@@ -43,14 +43,13 @@ function App() {
         }
       </div>
         <Switch>
-          <Route path="/" component={Home}></Route>
-          <Route path="/login" component={Login}></Route>
-          <Route path="/register" component={Register}></Route>
-          <Route path="/logout" component={Logout}></Route>
+          <Route exact path="/" component={Home}></Route>
+          <Route exact path="/login" component={Login}></Route>
+          <Route exact path="/register" component={Register}></Route>
+          <Route exact path="/logout" component={Logout}></Route>
           <PrivateRoute exact path="/expenses" component={ListExpensesComponent}></PrivateRoute>
-          <PrivateRoute path="/add-expense" component={AddExpenseComponent}></PrivateRoute>
-          <PrivateRoute path="/edit-expense" component={EditExpenseComponent}></PrivateRoute>
-          <Redirect from="*" to="/" />
+          <PrivateRoute exact path="/add-expense" component={AddExpenseComponent}></PrivateRoute>
+          <PrivateRoute exact path="/edit-expense" component={EditExpenseComponent}></PrivateRoute>
         </Switch>
       </Router>
     </div>
