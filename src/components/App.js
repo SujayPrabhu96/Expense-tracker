@@ -42,7 +42,7 @@ function App() {
         }
       </div>
         <Switch>
-          
+          <Route path="/" component={Home}></Route>
           <Route path="/login" component={Login}></Route>
           <Route path="/register" component={Register}></Route>
           <Route path="/logout" component={Logout}></Route>
