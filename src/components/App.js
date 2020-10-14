@@ -42,12 +42,13 @@ function App() {
         }
       </div>
         <Switch>
-          <PrivateRoute exact path="/" component={Home}></PrivateRoute>
+          
           <Route path="/login" component={Login}></Route>
           <Route path="/register" component={Register}></Route>
           <Route path="/logout" component={Logout}></Route>
-          <Route path="/add-expense" component={AddExpenseComponent}></Route>
-          <Route path="/edit-expense" component={EditExpenseComponent}></Route>
+          <PrivateRoute exact path="/expenses" component={Home}></PrivateRoute>
+          <PrivateRoute path="/add-expense" component={AddExpenseComponent}></PrivateRoute>
+          <PrivateRoute path="/edit-expense" component={EditExpenseComponent}></PrivateRoute>
           <Redirect from="*" to="/" />
         </Switch>
       </Router>
