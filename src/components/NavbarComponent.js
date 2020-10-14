@@ -19,11 +19,11 @@ function NavbarComponent() {
                 </button>
 
                 <div className="collapse navbar-collapse" id="navbarCollapse">
-                    <div className="navbar-nav">
+                    {user.isLoggedIn && <div className="navbar-nav">
                         <div className="nav-item nav-link active">
-                            <Link to="/">Home</Link>
+                            <Link to="/expenses">Expenses</Link>
                         </div>
-                    </div>
+                    </div>}
                     {!user.isLoggedIn && 
                     <div className="navbar-nav ml-auto">
                         <div className="nav-item nav-link">
