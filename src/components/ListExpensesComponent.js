@@ -31,7 +31,7 @@ function ListExpensesComponent(){
     const handleEditClick = async (event) => {
         try{
             const response = await dispatch(getUserExpense(event.target.id));
-            history.push("/edit-expense");
+            history.push("/expenses/edit-expense");
         } catch(error){
             dispatch(setError(error));
         }
@@ -40,7 +40,7 @@ function ListExpensesComponent(){
     return (
         <div>
             <h1>Expense Tracker</h1>
-            <Link to="/add-expense" className="btn btn-secondary m-2">Add Expense</Link>
+            <Link to="/expenses/add-expense" className="btn btn-secondary m-2">Add Expense</Link>
 
             {expenseData.loading ? <h2>Loading....</h2> :
 
