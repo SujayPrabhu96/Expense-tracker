@@ -6,7 +6,16 @@ export const addExpense = () => {
     return{
         type: addExpenseConstants.ADD_EXPENSE
     }
-}
+};
+
+export const changeExpenseInput = (name, value) => {
+    return{
+        type: saveExpenseConstants.CHANGE_EXPENSE_INPUT,
+        payload: {
+            name, value
+        }
+    }
+};
 
 const saveExpenseRequest = (expense) => {
     return{
@@ -26,15 +35,6 @@ const saveExpenseFailure = (error) => {
     return{
         type: saveExpenseConstants.SAVE_EXPENSE_FAILURE,
         payload: error
-    }
-};
-
-export const changeExpenseInput = (name, value) => {
-    return{
-        type: saveExpenseConstants.CHANGE_EXPENSE_INPUT,
-        payload: {
-            name, value
-        }
     }
 };
 
