@@ -1,4 +1,4 @@
-const { allExpenseConstants } = require("../constants/actionTypes");
+const { allExpenseConstants, addExpenseConstants } = require("../constants/actionTypes");
 
 const initialState = {
     loading: false,
@@ -30,6 +30,11 @@ const expenseReducer = (state = initialState, action) => {
                 loading: false,
                 expenses: [],
                 error: action.payload
+            }
+        case addExpenseConstants.ADD_EXPENSE: 
+            return{
+                ...state,
+                action: 'add'
             }
         default: return state
     }
