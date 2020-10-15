@@ -3,8 +3,10 @@ const { allExpenseConstants, addExpenseConstants } = require("../constants/actio
 const initialState = {
     loading: false,
     expenses: [],
+    expense: {},
     error: '',
-    action: ''
+    action: '',
+    saveBtnDisabled: false
 }
 
 const expenseReducer = (state = initialState, action) => {
