@@ -10,7 +10,7 @@ import { setError } from '../actions/alertActions';
 function AddExpenseComponent() {
 
     const history = useHistory();
-    const expense = useSelector(state => state.saveExpenseReducer);
+    const expense = useSelector(state => state.expenseReducer);
     const dispatch = useDispatch();
 
     const handleDateChange = (date) => {
@@ -42,7 +42,7 @@ function AddExpenseComponent() {
                         <div className="col-4">
                             <DatePicker
                                 className="form-control"
-                                selected={expense.date && moment(expense.date, "YYYY-MM-DD").toDate()}
+                                selected={expense.expense.date && moment(expense.expense.date, "YYYY-MM-DD").toDate()}
                                 onChange={handleDateChange}
                             >
                             </DatePicker>
@@ -51,17 +51,17 @@ function AddExpenseComponent() {
                     <div className="form-group row">
                         <label htmlFor="amount" className="col-2"><strong>Amount: </strong></label>
                         <div className="col-4">
-                            <input type="number" name="amount" id="amount" className="form-control" value={expense.amount} onChange={handleChange} />
+                            <input type="number" name="amount" id="amount" className="form-control" value={expense.expense.amount} onChange={handleChange} />
                         </div>
                     </div>
                     <div className="form-group row">
                         <label htmlFor="description" className="col-2"><strong>Description: </strong></label>
                         <div className="col-4">
-                            <input type="text" name="description" id="description" className="form-control" value={expense.description} onChange={handleChange} />
+                            <input type="text" name="description" id="description" className="form-control" value={expense.expense.description} onChange={handleChange} />
                         </div>
                     </div>
                     <div>
-                        <input type="submit" className="btn btn-primary" value="Add" onClick={handleClick} disabled={expense.btnDisabled} />
+                        <input type="submit" className="btn btn-primary" value="Add" onClick={handleClick} disabled={expense.saveBtnDisabled} />
                         <Link to="/expenses" className="btn btn-danger delete">Cancel</Link>
                     </div>
                 </form>
