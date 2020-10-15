@@ -20,7 +20,7 @@ const expenseReducer = (state = initialState, action) => {
                 ...state,
                 action: 'display',
                 loading: false,
-                expenses: action.payload,
+                expenses: action.payload.data,
                 error: ''
             }
         case allExpenseConstants.FETCH_EXPENSE_FAILURE:

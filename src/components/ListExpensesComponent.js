@@ -57,8 +57,7 @@ function ListExpensesComponent(){
                         {
                             expenseData &&
                             expenseData.expenses &&
-                            expenseData.expenses.data &&
-                            expenseData.expenses.data.map((expense, id) => {
+                            expenseData.expenses.map((expense, id) => {
                                 return (
                                     <tr key={id}>
                                         <td>{expense.date}</td>
