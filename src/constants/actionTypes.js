@@ -30,6 +30,10 @@ export const allExpenseConstants = {
     FETCH_EXPENSE_FAILURE: 'FETCH_EXPENSE_FAILURE'
 };
 
+export const addExpenseConstants = {
+    ADD_EXPENSE: 'ADD_EXPENSE'
+}
+
 export const saveExpenseConstants = {
     SAVE_EXPENSE_REQUEST: 'SAVE_EXPENSE_REQUEST',
     SAVE_EXPENSE_SUCCESS: 'SAVE_EXPENSE_SUCCESS',

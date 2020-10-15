@@ -1,6 +1,12 @@
-import { saveExpenseConstants } from '../constants/actionTypes';
+import { saveExpenseConstants, addExpenseConstants } from '../constants/actionTypes';
 import { saveExpense } from '../helpers/Expenses';
 import { setSuccess, setError } from './alertActions';
+
+export const addExpense = () => {
+    return{
+        type: addExpenseConstants.ADD_EXPENSE
+    }
+}
 
 const saveExpenseRequest = (expense) => {
     return{
