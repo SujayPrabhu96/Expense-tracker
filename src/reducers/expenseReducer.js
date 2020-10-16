@@ -1,4 +1,4 @@
-const { allExpenseConstants, addExpenseConstants, saveExpenseConstants } = require("../constants/actionTypes");
+const { allExpenseConstants, addExpenseConstants, saveExpenseConstants, deleteExpenseConstants } = require("../constants/actionTypes");
 
 const initialState = {
     loading: false,
@@ -66,6 +66,28 @@ const expenseReducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 saveBtnDisabled: false,
+                error: action.payload
+            }
+        case deleteExpenseConstants.DELETE_EXPENSE_REQUEST:
+            return{
+                ...state,
+                action: "delete",
+                loading: true,
+                expense: {
+                    expense_id: action.payload
+                }
+            }
+        case deleteExpenseConstants.DELETE_EXPENSE_SUCCESS:
+            return{
+                ...state,
+                loading: false,
+                expenses: state.expenses.filter((expense) => expense.id !== state.expense.expense_id),
+                expense: {}
+            }
+        case deleteExpenseConstants.DELETE_EXPENSE_FAILURE:
+            return{
+                ...state,
+                loading: false,
                 error: action.payload
             }
         default: return state
