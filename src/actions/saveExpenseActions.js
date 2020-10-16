@@ -42,8 +42,8 @@ export const submitExpense = (expense) => {
     return async (dispatch) => {
         try{
             dispatch(saveExpenseRequest(expense));
-            const response = await saveExpense(expense);
-            dispatch(saveExpenseSuccess(response));
+            await saveExpense(expense);
+            dispatch(saveExpenseSuccess(expense));
             dispatch(setSuccess("Expense Saved"));
             return true;
         } catch(error){
