@@ -22,7 +22,7 @@ const expenseReducer = (state = initialState, action) => {
                 ...state,
                 action: 'display',
                 loading: false,
-                expenses: action.payload.data,
+                expenses: action.payload,
                 error: ''
             }
         case allExpenseConstants.FETCH_EXPENSE_FAILURE:
@@ -45,6 +45,28 @@ const expenseReducer = (state = initialState, action) => {
                     ...state.expense,
                     [action.payload.name]: action.payload.value
                 }
+            }
+        case saveExpenseConstants.SAVE_EXPENSE_REQUEST:
+            return{
+                ...state,
+                action: 'save',
+                loading: true,
+                saveBtnDisabled: true,
+            }
+        case saveExpenseConstants.SAVE_EXPENSE_SUCCESS:
+            return{
+                ...state,
+                loading: false,
+                saveBtnDisabled: false,
+                expenses: state.expenses.concat([action.payload]),
+                expense: {}
+            }
+        case saveExpenseConstants.SAVE_EXPENSE_FAILURE:
+            return{
+                ...state,
+                loading: false,
+                saveBtnDisabled: false,
+                error: action.payload
             }
         default: return state
     }
