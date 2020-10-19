@@ -49,7 +49,7 @@ function App() {
           <Route exact path="/logout" component={Logout}></Route>
           <PrivateRoute exact path="/expenses" component={ListExpensesComponent}></PrivateRoute>
           <PrivateRoute exact path="/expenses/add-expense" component={AddExpenseComponent}></PrivateRoute>
-          <PrivateRoute exact path="/expenses/edit-expense" component={EditExpenseComponent}></PrivateRoute>
+          <PrivateRoute exact path="/expenses/edit-expense/:expense_id" component={EditExpenseComponent}></PrivateRoute>
         </Switch>
       </Router>
     </div>
