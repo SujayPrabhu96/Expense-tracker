@@ -1,4 +1,4 @@
-const { allExpenseConstants, addExpenseConstants, saveExpenseConstants, deleteExpenseConstants } = require("../constants/actionTypes");
+const { allExpenseConstants, addExpenseConstants, saveExpenseConstants, deleteExpenseConstants, getExpenseConstants, updateExpenseConstants } = require("../constants/actionTypes");
 
 const initialState = {
     loading: false,
@@ -88,6 +88,57 @@ const expenseReducer = (state = initialState, action) => {
             return{
                 ...state,
                 loading: false,
+                error: action.payload
+            }
+        case getExpenseConstants.GET_EXPENSE_REQUEST:
+            return{
+                ...state,
+                action: "edit",
+                loading: true,
+                expense: {
+                    expense_id: action.payload
+                }
+            }
+        case getExpenseConstants.GET_EXPENSE_SUCCESS:
+            return{
+                ...state,
+                loading: false,
+                expense: action.payload
+            }
+        case getExpenseConstants.GET_EXPENSE_FAILURE:
+            return{
+                ...state,
+                loading: false,
+                error: action.payload
+            }
+        case updateExpenseConstants.CHANGE_EXPENSE_EDIT_INPUT:
+            return{
+                ...state,
+                expense: {
+                    ...state.expense,
+                    [action.payload.name]: action.payload.value
+                }
+            }
+        case updateExpenseConstants.UPDATE_EXPENSE_REQUEST:
+            return{
+                ...state,
+                action: "update",
+                loading: true,
+                saveBtnDisabled: true,
+                expense: action.payload
+            }
+        case updateExpenseConstants.UPDATE_EXPENSE_SUCCESS:
+            return{
+                ...state,
+                loading: false,
+                saveBtnDisabled: false,
+                expense: {}
+            }
+        case updateExpenseConstants.UPDATE_EXPENSE_FAILURE:
+            return{
+                ...state,
+                loading: false,
+                saveBtnDisabled: false,
                 error: action.payload
             }
         default: return state
