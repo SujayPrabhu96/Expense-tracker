@@ -24,9 +24,15 @@ export const loginFailure = error => {
     }
 };
 
+export const updateLoginStateRequest = () => {
+    return{
+        type: loginConstants.UPDATE_LOGIN_STATE_REQUEST
+    }
+};
+
 export const updateLoginInitialState = user => {
     return{
-        type: loginConstants.UPDATE_INITIAL_LOGIN_STATE,
+        type: loginConstants.UPDATE_LOGIN_STATE_SUCCESS,
         payload: user
     }
 }
