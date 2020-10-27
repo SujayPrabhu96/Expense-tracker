@@ -23,17 +23,17 @@ const deleteExpenseFailure = (error) => {
     }
 };
 
-export const handleDeleteExpense = (expense_id) => {
-    return async (dispatch) => {
-        try{
-            dispatch(deleteExpenseRequest(expense_id));
-            const response = await deleteExpense(expense_id);
+export const handleDeleteExpense = (expense_id) => (dispatch) => {
+    return new Promise((resolve, reject) => {
+        dispatch(deleteExpenseRequest(expense_id));
+        deleteExpense(expense_id)
+        .then(response => {
             dispatch(deleteExpenseSuccess(response));
-            dispatch(setSuccess("Expense Deleted"));
-            return true;
-        } catch(error){
+            resolve(response);
+        })
+        .catch(error => {
             dispatch(deleteExpenseFailure(error));
-            dispatch(setError(error));
-        }
-    }
+            reject(error);
+        })
+    })
 };

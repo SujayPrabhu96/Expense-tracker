@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getUserExpenses } from '../actions/getExpensesAction';
-import { setError } from '../actions/alertActions';
+import { setSuccess, setError } from '../actions/alertActions';
 import { handleDeleteExpense } from '../actions/deleteExpenseAction';
 import { Link, useHistory } from 'react-router-dom';
 import Loading from './LoadingComponent';
@@ -16,14 +16,10 @@ function ListExpensesComponent(){
         .catch(error => dispatch(setError("Something Went Wrong")));
     }, []);
 
-    const handleDeleteClick = async (event) => {
-        try{
-            const response = await dispatch(handleDeleteExpense(event.target.id));
-            dispatch(getUserExpenses());
-        } catch(error){
-            dispatch(setError(error));
-        }
-        
+    const handleDeleteClick = (event) => {
+        dispatch(handleDeleteExpense(event.target.id))
+        .then(response => dispatch(setSuccess("Expense Deleted")))
+        .catch(error => dispatch(setError(error)));
     };
 
     return (
