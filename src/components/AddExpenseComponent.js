@@ -6,6 +6,7 @@ import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 import { changeExpenseInput, submitExpense } from '../actions/saveExpenseActions';
 import { setError } from '../actions/alertActions';
+import Loading from './LoadingComponent';
 
 function AddExpenseComponent() {
 
@@ -34,7 +35,7 @@ function AddExpenseComponent() {
 
     return (
         <div>
-            {expenseData.loading ? <h2>Loading...</h2> :
+            {expenseData.loading ? <Loading /> :
                 <form>
                     <h1 className="mb-5">Add Expense</h1>
                     <div className="form-group row">

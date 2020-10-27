@@ -5,6 +5,7 @@ import { setError } from '../actions/alertActions';
 import { handleDeleteExpense } from '../actions/deleteExpenseAction';
 import { Link, useHistory } from 'react-router-dom';
 import { addExpense } from '../actions/saveExpenseActions';
+import Loading from './LoadingComponent';
 
 function ListExpensesComponent(){
     let history = useHistory();
@@ -32,14 +33,13 @@ function ListExpensesComponent(){
     const handleAddClick = () => {
         dispatch(addExpense());
     };
-    console.log(expenseData);
 
     return (
         <div>
             <h1>Expense Tracker</h1>
             <Link to="/expenses/add-expense" className="btn btn-secondary m-2" onClick={handleAddClick}>Add Expense</Link>
 
-            {expenseData.loading ? <h2>Loading....</h2> :
+            {expenseData.loading ? <Loading /> :
 
                 <table className="table mt-3">
                     <thead>

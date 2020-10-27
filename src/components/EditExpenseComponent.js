@@ -7,6 +7,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { getUserExpense } from '../actions/getExpensesAction';
 import { changeExpenseInput, handleUpdateExpense } from '../actions/updateExpenseActions';
 import { setError } from '../actions/alertActions';
+import Loading from './LoadingComponent';
 
 function EditExpenseComponent(){
 
@@ -49,7 +50,7 @@ function EditExpenseComponent(){
 
     return(
         <div>
-            {expenseData.loading ? <h2>Loading...</h2> :
+            {expenseData.loading ? <Loading /> :
             expenseData.expense  &&
             <form>
                 <h1 className="mb-5">Edit Expense</h1>
