@@ -35,27 +35,27 @@ function App() {
 
   return (
     <div>
-      {login.loading ? <h2>Loading....</h2> :
-        <div className="container">
 
-          <Router>
-            <Navbar />
-            <div className="col-8 mt-4">
-              {alert && alert.message &&
-                <div className={`alert ${alert.type}`}>{alert.message}</div>
-              }
-            </div>
-            <Switch>
-              <Route exact path="/" component={Home}></Route>
-              <Route exact path="/login" component={Login}></Route>
-              <Route exact path="/register" component={Register}></Route>
-              <Route exact path="/logout" component={Logout}></Route>
-              <PrivateRoute exact path="/expenses" component={ListExpensesComponent}></PrivateRoute>
-              <PrivateRoute exact path="/expenses/add-expense" component={AddExpenseComponent}></PrivateRoute>
-              <PrivateRoute exact path="/expenses/edit-expense/:expense_id" component={EditExpenseComponent}></PrivateRoute>
-            </Switch>
-          </Router>
-        </div>}
+      <div className="container">
+
+        <Router>
+          <Navbar />
+          <div className="col-8 mt-4">
+            {alert && alert.message &&
+              <div className={`alert ${alert.type}`}>{alert.message}</div>
+            }
+          </div>
+          <Switch>
+            <Route exact path="/" component={Home}></Route>
+            <Route exact path="/login" component={Login}></Route>
+            <Route exact path="/register" component={Register}></Route>
+            <Route exact path="/logout" component={Logout}></Route>
+            <PrivateRoute exact path="/expenses" component={ListExpensesComponent}></PrivateRoute>
+            <PrivateRoute exact path="/expenses/add-expense" component={AddExpenseComponent}></PrivateRoute>
+            <PrivateRoute exact path="/expenses/edit-expense/:expense_id" component={EditExpenseComponent}></PrivateRoute>
+          </Switch>
+        </Router>
+      </div>
     </div>
   );
 }
