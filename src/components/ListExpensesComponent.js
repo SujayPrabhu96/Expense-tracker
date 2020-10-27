@@ -32,6 +32,7 @@ function ListExpensesComponent(){
     const handleAddClick = () => {
         dispatch(addExpense());
     };
+    console.log(expenseData);
 
     return (
         <div>
@@ -51,9 +52,8 @@ function ListExpensesComponent(){
                     </thead>
                     <tbody>
                         {
-                            expenseData &&
-                            expenseData.expenses &&
-                            expenseData.expenses.map((expense, id) => {
+                            expenseData ?. expenses && expenseData.expenses.length ?
+                            (expenseData.expenses.map((expense, id) => {
                                 return (
                                     <tr key={id}>
                                         <td>{expense.date}</td>
@@ -67,7 +67,8 @@ function ListExpensesComponent(){
                                         </td>
                                     </tr>
                                 );
-                            })
+                            }) 
+                            ) : (<tr><td colSpan="4">No Expense Available</td></tr>)
                         }
                     </tbody>
                 </table>
