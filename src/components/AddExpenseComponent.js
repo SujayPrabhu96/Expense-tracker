@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import DatePicker from "react-datepicker";
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 import { changeExpenseInput, submitExpense } from '../actions/saveExpenseActions';
+import { addExpense } from '../actions/saveExpenseActions';
 import { setError } from '../actions/alertActions';
 import Loading from './LoadingComponent';
 
@@ -13,6 +14,10 @@ function AddExpenseComponent() {
     const history = useHistory();
     const expenseData = useSelector(state => state.expenseReducer);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(addExpense());
+    }, []);
 
     const handleDateChange = (date) => {
         let parsed_date = moment(date).format('YYYY-MM-DD');
