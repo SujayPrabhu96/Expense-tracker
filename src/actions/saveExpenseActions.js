@@ -38,17 +38,17 @@ const saveExpenseFailure = (error) => {
     }
 };
 
-export const submitExpense = (expense) => {
-    return async (dispatch) => {
-        try{
-            dispatch(saveExpenseRequest(expense));
-            await saveExpense(expense);
+export const submitExpense = (expense) => (dispatch) =>{
+    return new Promise((resolve, reject) => {
+        dispatch(saveExpenseRequest(expense));
+        saveExpense((expense))
+        .then(response => {
             dispatch(saveExpenseSuccess(expense));
-            dispatch(setSuccess("Expense Saved"));
-            return true;
-        } catch(error){
+            resolve(response);
+        })
+        .catch(error => {
             dispatch(saveExpenseFailure(error));
-            dispatch(setError(error));
-        }
-    }
+            reject(error);
+        })
+    })
 };

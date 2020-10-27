@@ -6,7 +6,7 @@ import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 import { changeExpenseInput, submitExpense } from '../actions/saveExpenseActions';
 import { addExpense } from '../actions/saveExpenseActions';
-import { setError } from '../actions/alertActions';
+import { setError, setSuccess } from '../actions/alertActions';
 import Loading from './LoadingComponent';
 
 function AddExpenseComponent() {
@@ -28,14 +28,13 @@ function AddExpenseComponent() {
         dispatch(changeExpenseInput(event.target.name, event.target.value));
     }
 
-    const handleClick = async (event) => {
-        event.preventDefault();
-        try {
-            const response = await dispatch(submitExpense(expenseData.expense));
+    const handleClick = (event) => {
+        dispatch(submitExpense(expenseData.expense))
+        .then((response) => {
+            setSuccess("Expense Saved");
             history.push("/expenses");
-        } catch (error) {
-            dispatch(setError(error));
-        }
+        })
+        .catch((error) => dispatch(setError(error)));
     }
 
     return (
