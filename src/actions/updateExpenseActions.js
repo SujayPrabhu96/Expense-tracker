@@ -31,17 +31,15 @@ export const changeExpenseInput = (name, value) => {
     }
 };
 
-export const handleUpdateExpense = (expense_id, expense) => {
-    return async (dispatch) => {
-        try{
-            dispatch(updateExpenseRequest(expense));
-            await updateExpense(expense_id, expense);
-            dispatch(updateExpenseSuccess());
-            dispatch(setSuccess("Expense Updated"));
-            return true;
-        } catch(error){
-            dispatch(updateExpenseFailure(error));
-            dispatch(setError(error));
-        }
-    }
+export const handleUpdateExpense = (expense_id, expense) => (dispatch) => {
+    dispatch(updateExpenseRequest(expense));
+    updateExpense(expense_id, expense)
+    .then((response) => {
+        dispatch(updateExpenseSuccess());
+        resolve(response);
+    })
+    .catch((error) => {
+        dispatch(updateExpenseFailure(error));
+        reject(error);
+    })
 };

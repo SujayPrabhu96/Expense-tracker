@@ -6,7 +6,7 @@ import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 import { getUserExpense } from '../actions/getExpensesAction';
 import { changeExpenseInput, handleUpdateExpense } from '../actions/updateExpenseActions';
-import { setError } from '../actions/alertActions';
+import { setError, setSuccess } from '../actions/alertActions';
 import Loading from './LoadingComponent';
 
 function EditExpenseComponent(){
@@ -34,14 +34,13 @@ function EditExpenseComponent(){
         dispatch(changeExpenseInput(event.target.name, event.target.value));
     }
 
-    const handleUpdateClick = async (event) => {
-        event.preventDefault();
-        try{
-            const response = await dispatch(handleUpdateExpense(expenseData.expense.id, expenseData.expense));
-            histroty.push("/expenses");
-        } catch(error){
-            setError("Something Went Wrong");
-        }
+    const handleUpdateClick = (event) => {
+        dispatch(handleUpdateExpense(expenseData.expense.id, expenseData.expense))
+        .thee((response) => {
+            dispatch(setSuccess("Expense Updated"));
+            history.push("/expenses");
+        })
+        .catch((error) => dispatch(setError("Something Went Wrong")));
     }
 
     return(
