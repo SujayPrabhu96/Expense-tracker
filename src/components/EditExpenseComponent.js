@@ -16,13 +16,9 @@ function EditExpenseComponent(){
     const dispatch = useDispatch();
     const { expense_id } = useParams();
 
-    const fetchExpense = async () => {
-        try{
-            await dispatch(getUserExpense(expense_id));
-        } catch(error){
-            dispatch(setError(error));
-        }
-        return true;
+    const fetchExpense = () => {
+        dispatch(getUserExpense(expense_id))
+        .catch((error) => dispatch(setError(error)));
     }
 
     useEffect(() => {

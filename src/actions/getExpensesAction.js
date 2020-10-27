@@ -58,16 +58,15 @@ export const getUserExpenses = () => (dispatch) => {
     })
 };
 
-export const getUserExpense = (expense_id) => {
-    return async (dispatch) => {
-        try{
-            dispatch(getExpenseRequest(expense_id));
-            const response = await getExpense(expense_id);
-            dispatch(getExpenseSuccess(response));
-            return true;
-        } catch(error){
-            dispatch(getExpenseFailure(error));
-            dispatch(setError("Something Went Wrong"));
-        }
-    }
+export const getUserExpense = (expense_id) => (dispatch) => {
+    dispatch(getExpenseRequest(expense_id));
+    getExpense(expense_id)
+    .then((response) => {
+        dispatch(getExpenseSuccess(response));
+        resolve(response);
+    })
+    .catch((error) => {
+        dispatch(getExpenseFailure(error));
+        reject(error);
+    });
 };
