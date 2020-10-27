@@ -43,18 +43,19 @@ const getExpenseFailure = (error) => {
     }
 };
 
-export const getUserExpenses = () => {
-    return async (dispatch) => {
+export const getUserExpenses = () => (dispatch) => {
+    return new Promise((resolve, reject) => {
         dispatch(getAllExpenseRequest());
-        try{
-            const expenses = await listExpenses();
+        listExpenses()
+        .then(expenses => {
             dispatch(getAllExpenseSuccess(expenses));
-            return true;
-        } catch(error){
+            resolve(expenses);
+        })
+        .catch(error => {
             dispatch(getAllExpenseFailure(error));
-            dispatch(setError("Something Went Wrong"));
-        }
-    }
+            reject(error);
+        })
+    })
 };
 
 export const getUserExpense = (expense_id) => {

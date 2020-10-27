@@ -13,11 +13,8 @@ function ListExpensesComponent(){
 
     useEffect(() => {
         dispatch(getUserExpenses())
+        .catch(error => dispatch(setError("Something Went Wrong")));
     }, []);
-
-    useEffect(() => {
-        expenseData.error && dispatch(setError("Something Went Wrong"))
-    }, [expenseData]);
 
     const handleDeleteClick = async (event) => {
         try{
