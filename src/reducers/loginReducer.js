@@ -1,6 +1,8 @@
 const { loginConstants } = require("../constants/actionTypes");
 
-const initialState = {};
+const initialState = {
+    loading: true
+};
 
 const loginReducer = (state = initialState, action) => {
     switch(action.type){
@@ -26,11 +28,17 @@ const loginReducer = (state = initialState, action) => {
                 ...state,
                 [action.payload.name]: action.payload.value
             }
-        case loginConstants.UPDATE_INITIAL_LOGIN_STATE:
+        case loginConstants.UPDATE_LOGIN_STATE_REQUEST:
+            return{
+                ...state,
+                loading: true
+            }
+        case loginConstants.UPDATE_LOGIN_STATE_SUCCESS:
             return{
                 ...state,
                 user: action.payload,
-                isLoggedIn: true
+                isLoggedIn: true,
+                loading: false
             }
         case loginConstants.LOGOUT:
             return{

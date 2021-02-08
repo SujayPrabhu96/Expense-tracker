@@ -4,7 +4,7 @@ import axios from '../apis/axios';
 export const listExpenses = async () => {
     try{
         const response = await axios.get(apis.userExpenses);
-        return response.data;
+        return response.data.data;
     } catch(error){
         throw new Error(error);
     }
@@ -23,7 +23,7 @@ export const getExpense = async (id) => {
     try{
         const get_url = `${apis.getExpense}${id}`;
         const response = await axios.get(get_url);
-        return response.data;
+        return response.data.data;
     } catch(error){
         throw new Error(error);
     }

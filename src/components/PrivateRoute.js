@@ -1,19 +1,22 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
+import Loading from './LoadingComponent';
 
-function PrivateRoute({ component: Component, ...rest }){
-    
+function PrivateRoute({ component: Component, ...rest }) {
+
     const login = useSelector(state => state.loginReducer);
-    return(
+    return (
         <div>
-            <Route {...rest} render={(props) => {
-                if(!login.isLoggedIn){
-                   return <Redirect to="/login" />
+            {login.loading ? <Loading /> :
+                <Route {...rest} render={(props) => {
+                    if (!login.isLoggedIn) {
+                        return <Redirect to="/login" />
+                    }
+                    return <Component {...props} />
                 }
-                return <Component {...props} />
+                }></Route>
             }
-            }></Route>
         </div>
     );
 }
